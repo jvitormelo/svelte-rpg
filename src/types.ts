@@ -16,3 +16,8 @@ export interface Character {
 }
 
 export type Enemy = Character;
+
+export type Terrain = {
+	name: string;
+	image: string;
+};

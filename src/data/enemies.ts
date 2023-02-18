@@ -1,7 +1,4 @@
-import { writable } from 'svelte/store';
-import type { Enemy } from '../types';
-
-export const enemies = writable<Enemy[]>([
+export const enemies = [
 	{
 		attack: 10,
 		defense: 10,
@@ -18,4 +15,4 @@ export const enemies = writable<Enemy[]>([
 			}
 		]
 	}
-]);
+];

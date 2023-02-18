@@ -1,10 +1,7 @@
-import { writable } from 'svelte/store';
 import Shadow from '$lib/assets/characters/shadow.png';
-import type { Character } from '../types';
 
-export const availableCharacters = writable<Character[]>([
+export const availableCharacters = [
 	{
-		id: 'shadow',
 		name: 'Shadow',
 		image: Shadow,
 		attack: Number.MAX_SAFE_INTEGER,
@@ -19,4 +16,4 @@ export const availableCharacters = writable<Character[]>([
 			}
 		]
 	}
-]);
+];
