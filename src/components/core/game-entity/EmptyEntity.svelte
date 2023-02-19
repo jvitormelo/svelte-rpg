@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { Position } from '../../../games-type';
 	import { isBetween } from '../../../lib/utils/between';
-	import { useSkill } from '../../../store/combat/actions';
+
 	import { moveEntity } from '../../../store/game/actions/move-character';
+	import { useSkill } from '../../../store/game/actions/use-skill';
 	import { currentDragging } from '../../../store/game/drag';
 	import { selectedSkill } from '../../../store/game/skill';
 	import type { Skill } from '../../../types';

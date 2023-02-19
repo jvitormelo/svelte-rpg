@@ -1,7 +1,8 @@
-import type { CharacterGameEntity } from '../../games-type';
-import { isBetween } from '../../lib/utils/between';
-import type { Skill } from '../../types';
-import { game } from '../game/game';
+import type { CharacterGameEntity } from '../../../games-type';
+import { isBetween } from '../../../lib/utils/between';
+import type { Skill } from '../../../types';
+import { game } from '../game';
+import { deselectSkill } from '../skill';
 
 export const useSkill = (skill: Skill, character: CharacterGameEntity) => {
 	game.update((value) => {
@@ -29,7 +30,6 @@ export const useSkill = (skill: Skill, character: CharacterGameEntity) => {
 									character.character.attack * skill.damageMultiplier
 							}
 						};
-						console.log('enemy', entity);
 					}
 				}
 			}
@@ -37,4 +37,5 @@ export const useSkill = (skill: Skill, character: CharacterGameEntity) => {
 
 		return clone;
 	});
+	deselectSkill();
 };

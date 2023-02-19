@@ -2,8 +2,11 @@ import { enemies } from '../../../data/enemies';
 import type { GameEntity } from '../../../games-type';
 import { generateId } from '../../../lib/utils/generate-id';
 import type { Character } from '../../../types';
-import { selectCharacter, selectedCharacterId } from '../../selected-character';
+import { selectCharacter } from '../../selected-character';
 import { game, isGameStarted, type Game } from '../game';
+
+const ROW_LENGTH = 5;
+const COLUMN_LENGTH = 5;
 
 const enemyPositions = [
 	{
@@ -15,9 +18,6 @@ const enemyPositions = [
 		y: 3
 	}
 ];
-
-const ROW_LENGTH = 4;
-const COLUMN_LENGTH = 4;
 
 export const startGame = (character: Character) => {
 	const startPosition = {

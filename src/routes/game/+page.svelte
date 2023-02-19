@@ -14,11 +14,19 @@
 			id: generateId()
 		});
 	});
+
+	$: isAllEnemiesDead = !$game
+		.flat(2)
+		.some((entity) => entity.type === 'enemy' && entity.character.currentHealth >= 0);
 </script>
 
 <div class="flex  px-32 items-center min-h-screen justify-between">
 	<CharacterSideMenu />
 	<main>
+		{#if isAllEnemiesDead}
+			<h1 class="text-xl text-center">VICTORY!!!</h1>
+		{/if}
+
 		<div class="flex border-2 border-black gap-1">
 			{#each $game as row}
 				<div class="flex flex-col gap-1">
