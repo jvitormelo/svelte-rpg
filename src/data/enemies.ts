@@ -11,7 +11,8 @@ export const enemies = [
 			{
 				aoe: 1,
 				damageMultiplier: 1,
-				name: 'Slime Attack'
+				name: 'Slime Attack',
+				icon: '🐌'
 			}
 		]
 	}

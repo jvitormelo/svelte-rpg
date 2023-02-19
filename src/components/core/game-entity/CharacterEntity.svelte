@@ -1,14 +1,13 @@
 <script lang="ts">
+	import type { Position } from '../../../games-type';
 	import { currentDragging } from '../../../store/game/drag';
 	import type { Character } from '../../../types';
-	import type { Position } from '../../../games-type';
 
 	export let character: Character;
 	export let position: Position['position'];
 </script>
 
 <div
-	draggable="true"
 	on:dragstart={(e) => {
 		currentDragging.set({
 			character,

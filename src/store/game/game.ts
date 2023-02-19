@@ -1,9 +1,9 @@
 import { writable } from 'svelte/store';
 import { enemies } from '../../data/enemies';
 import type { GameEntity } from '../../games-type';
-import { generateId } from '../../lib/assets/characters/utils/generate-id';
+import { generateId } from '../../lib/utils/generate-id';
 import type { Character } from '../../types';
-import { selectedCharacter } from '../selected-chacter';
+import { selectedCharacter } from '../selected-character';
 
 export const isGameStarted = writable(false);
 
@@ -32,7 +32,9 @@ export const startGame = (character: Character) => {
 	};
 
 	selectedCharacter.set(character);
+
 	const newGame: Game = [];
+
 	for (let i = 0; i < ROW_LENGTH; i++) {
 		const row: GameEntity[] = [];
 

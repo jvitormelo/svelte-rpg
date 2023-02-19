@@ -29,4 +29,6 @@ export type Position = {
 };
 export type GameEntity = AllEntities & Position;
 
+export type CharacterGameEntity = ICharacterEntity & Position;
+
 export type MoveableEntity = ICharacterEntity | IEnemyEntity;

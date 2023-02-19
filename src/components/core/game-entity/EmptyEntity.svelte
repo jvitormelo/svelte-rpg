@@ -1,9 +1,16 @@
 <script lang="ts">
 	import type { Position } from '../../../games-type';
+	import { isBetween } from '../../../lib/utils/between';
 	import { moveEntity } from '../../../store/game/actions/move-character';
 	import { currentDragging } from '../../../store/game/drag';
+	import { selectedSkill } from '../../../store/game/skill';
+	import type { Skill } from '../../../types';
 
 	export let position: Position['position'];
+
+	$: inSkillArea = $selectedSkill
+		? handleAreaSkill($selectedSkill.skill, $selectedSkill.character.position)
+		: false;
 
 	$: moveable = $currentDragging
 		? ($currentDragging?.position.x + 1 === position.x &&
@@ -16,6 +23,15 @@
 				$currentDragging?.position.y + -1 === position.y)
 		: false;
 
+	function handleAreaSkill(selectedSkill: Skill, characterPosition: Position['position']) {
+		const { x, y } = characterPosition;
+		const { aoe } = selectedSkill;
+
+		return isBetween(position.x, x - aoe, x + aoe) && isBetween(position.y, y - aoe, y + aoe);
+
+		return true;
+	}
+
 	function handleDrop() {
 		if (!moveable || !$currentDragging) return;
 
@@ -26,13 +42,19 @@
 
 		currentDragging.set(null);
 	}
+
+	$: background = moveable
+		? 'rgba(0, 255, 0, 0.3)'
+		: inSkillArea
+		? 'rgba(255, 191, 255, 0.7)'
+		: 'rgba(0, 191, 255, 0.3)';
 </script>
 
 <div
 	on:drop|preventDefault={handleDrop}
 	draggable="false"
 	class="absolute z-10 top-0 left-0 h-full w-full glass-background rounded-md"
-	style="background-color: {moveable ? 'rgba(0, 255, 0, 0.3)' : 'rgba(0, 191, 255, 0.3)'};"
+	style="background-color: {background}; cursor: {inSkillArea ? 'pointer' : 'default'};"
 />
 
 <style>

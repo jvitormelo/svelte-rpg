@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Character } from '../../types';
 
-	export let character: Character;
+	export let character: Omit<Character, 'id'>;
 
-	export let onClick: (character: Character) => void;
+	export let onClick: (character: Omit<Character, 'id'>) => void;
 </script>
 
 <div class="card w-96 bg-base-100 shadow-xl">

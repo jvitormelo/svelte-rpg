@@ -1,4 +1,5 @@
 import Shadow from '$lib/assets/characters/shadow.png';
+import Atomic from '$lib/assets/skills/atomic.jpg';
 
 export const availableCharacters = [
 	{
@@ -10,8 +11,9 @@ export const availableCharacters = [
 		description: 'The ultimate being.',
 		skills: [
 			{
+				icon: Atomic,
 				name: "I'm atomic",
-				aoe: Number.MAX_SAFE_INTEGER,
+				aoe: 2,
 				damageMultiplier: 1
 			}
 		]

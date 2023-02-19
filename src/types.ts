@@ -2,6 +2,7 @@ export interface Skill {
 	name: string;
 	aoe: number;
 	damageMultiplier: number;
+	icon: string;
 }
 
 export interface Character {
