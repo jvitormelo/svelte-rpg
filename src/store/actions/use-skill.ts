@@ -1,5 +1,6 @@
 import type { CharacterGameEntity } from 'src/games-type';
 import { isBetween } from 'src/lib/utils/between';
+import { getDistance } from 'src/lib/utils/get-distance';
 import type { Skill } from 'src/types';
 import { removeActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
@@ -12,7 +13,7 @@ import { createSkillDamage } from './create-skill-damage';
 export const useSkill = async (skill: Skill, entity: CharacterGameEntity) => {
 	if (skill.audio) {
 		playSkillSound(skill.audio.onCast);
-		await playSkillAnimation(2000);
+		await playSkillAnimation(500);
 	}
 	game.update((value) => {
 		const clone = structuredClone(value);

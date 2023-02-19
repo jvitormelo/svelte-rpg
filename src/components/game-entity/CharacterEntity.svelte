@@ -24,6 +24,7 @@
 </script>
 
 <div
+	data-entity-id={character.id}
 	draggable={canMove}
 	on:dragstart={onDragStart}
 	on:dragend={onDragEnd}

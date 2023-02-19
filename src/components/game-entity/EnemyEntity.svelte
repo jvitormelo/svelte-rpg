@@ -14,7 +14,7 @@
 {#if isDead}
 	<div class="bg-black" />
 {:else}
-	<button class="bg-red-400 w-full relative" on:click={onClick}>
+	<button data-entity-id={character.id} class="bg-red-400 w-full relative" on:click={onClick}>
 		<div
 			draggable={false}
 			style="background-image: url({character.image});"
