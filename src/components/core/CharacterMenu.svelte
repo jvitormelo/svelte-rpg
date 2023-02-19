@@ -29,10 +29,6 @@
 			});
 		}
 	}
-
-	$: if ($selectedCharacter && $selectedCharacter?.currentHealth <= 0) {
-		alert('You are dead');
-	}
 </script>
 
 <aside class="artboard phone-1">

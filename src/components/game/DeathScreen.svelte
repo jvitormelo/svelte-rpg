@@ -1,19 +1,21 @@
 <script lang="ts">
 	import { isPlayerDead } from 'src/store/game/selected-character';
 
-	let message = 'You are dead';
-
 	function restart() {
 		window.location.reload();
 	}
 </script>
 
 {#if $isPlayerDead}
-	<div class="death-screen">
-		<h1>YOU DIED</h1>
-		<h2>{{ message }}</h2>
-		<p><slot /></p>
-		<button on:click={restart}>Restart</button>
+	<div
+		class="w-screen h-screen fixed left-0 top-0 flex justify-center items-center z-50 bg-transparent"
+	>
+		<div class="death-screen">
+			<h1>YOU DIED</h1>
+
+			<p><slot /></p>
+			<button on:click={restart}>Restart</button>
+		</div>
 	</div>
 {/if}
 
@@ -27,7 +29,8 @@
 		color: #fff;
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		text-align: center;
-		height: 100vh;
+		width: 100%;
+		height: 50vh;
 	}
 
 	h1 {

@@ -11,6 +11,7 @@
 	import SkillAnimation from 'src/components/game/SkillAnimation.svelte';
 	import SkillAudio from 'src/components/game/SkillAudio.svelte';
 	import { deselectSkill } from 'src/store/game/skill';
+	import DeathScreen from 'src/components/game/DeathScreen.svelte';
 
 	onMount(() => {
 		startGame({
@@ -57,6 +58,7 @@
 	<GameMenu />
 </div>
 
+<DeathScreen />
 <SkillAudio />
 <SkillAnimation />
 
