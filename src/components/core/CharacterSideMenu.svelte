@@ -6,6 +6,8 @@
 	import type { Skill } from '../../types';
 
 	function handleSelectSkill(skill: Skill) {
+		if ($actionPoints < skill.cost) return alert('Not enough action points');
+
 		if (skill.name === $selectedSkill?.skill.name) {
 			return deselectSkill();
 		}

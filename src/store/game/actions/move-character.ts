@@ -1,7 +1,6 @@
 import { get } from 'svelte/store';
 import { MOVE_COST } from '../../../constants';
-import type { MoveableEntity } from '../../../games-type';
-import { actionPoints } from '../action-points';
+import { actionPoints, removeActionsPoints } from '../action-points';
 import { game } from '../game';
 
 export const moveEntity = (x: number, y: number, entityId: string) => {
@@ -54,5 +53,5 @@ export const moveEntity = (x: number, y: number, entityId: string) => {
 		return clone;
 	});
 
-	actionPoints.update((actionPoints) => actionPoints - MOVE_COST);
+	removeActionsPoints(MOVE_COST);
 };

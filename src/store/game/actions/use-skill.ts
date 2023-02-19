@@ -1,6 +1,7 @@
 import type { CharacterGameEntity } from '../../../games-type';
 import { isBetween } from '../../../lib/utils/between';
 import type { Skill } from '../../../types';
+import { removeActionsPoints } from '../action-points';
 import { game } from '../game';
 import { deselectSkill } from '../skill';
 
@@ -38,4 +39,5 @@ export const useSkill = (skill: Skill, character: CharacterGameEntity) => {
 		return clone;
 	});
 	deselectSkill();
+	removeActionsPoints(skill.cost);
 };
