@@ -1,9 +1,9 @@
-import { enemies } from '../../../data/enemies';
-import type { GameEntity } from '../../../games-type';
-import { generateId } from '../../../lib/utils/generate-id';
-import type { Character } from '../../../types';
-import { selectCharacter } from '../../selected-character';
-import { game, isGameStarted, type Game } from '../game';
+import { enemies } from 'src/data/enemies';
+import type { GameEntity } from 'src/games-type';
+import { generateId } from 'src/lib/utils/generate-id';
+import type { Character } from 'src/types';
+import { game, type Game } from '../game/game';
+import { selectCharacter } from '../game/selected-character';
 
 const ROW_LENGTH = 5;
 const COLUMN_LENGTH = 5;
@@ -69,6 +69,4 @@ export const startGame = (character: Character) => {
 	game.set(newGame);
 
 	selectCharacter(character.id);
-
-	isGameStarted.set(true);
 };

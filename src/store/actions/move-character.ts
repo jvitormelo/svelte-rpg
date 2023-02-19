@@ -1,7 +1,7 @@
+import { MOVE_COST } from 'src/constants';
 import { get } from 'svelte/store';
-import { MOVE_COST } from '../../../constants';
-import { actionPoints, removeActionsPoints } from '../action-points';
-import { game } from '../game';
+import { actionPoints, removeActionsPoints } from '../game/action-points';
+import { game } from '../game/game';
 
 export const moveEntity = (x: number, y: number, entityId: string) => {
 	// good idea

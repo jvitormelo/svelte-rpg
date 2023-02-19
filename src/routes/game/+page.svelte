@@ -5,7 +5,7 @@
 	import { availableCharacters } from '../../data/characters';
 	import { generateId } from '../../lib/utils/generate-id';
 	import { game } from '../../store/game/game';
-	import { startGame } from '../../store/game/actions/start-game';
+	import { startGame } from '../../store/actions/start-game';
 	import GameEntityController from 'src/components/game-entity/GameEntityController.svelte';
 
 	onMount(() => {

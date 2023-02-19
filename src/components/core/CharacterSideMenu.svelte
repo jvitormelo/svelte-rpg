@@ -2,7 +2,7 @@
 	import { actionPoints } from '../../store/game/action-points';
 	import { game } from '../../store/game/game';
 	import { deselectSkill, selectedSkill, selectSkill } from '../../store/game/skill';
-	import { selectedCharacter, selectedCharacterId } from '../../store/selected-character';
+	import { selectedCharacter, selectedCharacterId } from '../../store/game/selected-character';
 	import type { Skill } from '../../types';
 
 	function handleSelectSkill(skill: Skill) {

@@ -1,9 +1,9 @@
-import type { CharacterGameEntity } from '../../../games-type';
-import { isBetween } from '../../../lib/utils/between';
-import type { Skill } from '../../../types';
-import { removeActionsPoints } from '../action-points';
-import { game } from '../game';
-import { deselectSkill } from '../skill';
+import type { CharacterGameEntity } from 'src/games-type';
+import { isBetween } from 'src/lib/utils/between';
+import type { Skill } from 'src/types';
+import { removeActionsPoints } from '../game/action-points';
+import { game } from '../game/game';
+import { deselectSkill } from '../game/skill';
 
 export const useSkill = (skill: Skill, character: CharacterGameEntity) => {
 	game.update((value) => {
