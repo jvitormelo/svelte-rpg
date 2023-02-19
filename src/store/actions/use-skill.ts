@@ -4,11 +4,13 @@ import type { Skill } from 'src/types';
 import { removeActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
 import { deselectSkill } from '../game/skill';
+import { playSkillAnimation } from '../game/skill-animation';
 import { playSkillSound } from '../game/skill-sound';
 
-export const useSkill = (skill: Skill, character: CharacterGameEntity) => {
+export const useSkill = async (skill: Skill, character: CharacterGameEntity) => {
 	if (skill.audio) {
 		playSkillSound(skill.audio.onCast);
+		await playSkillAnimation(2000);
 	}
 	game.update((value) => {
 		const clone = structuredClone(value);

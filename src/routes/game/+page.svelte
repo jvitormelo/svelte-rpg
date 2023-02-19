@@ -10,6 +10,7 @@
 	import { finishTurn } from 'src/store/actions/finish-turn';
 	import SkillAudio from 'src/components/core/SkillAudio.svelte';
 	import { deselectSkill } from 'src/store/game/skill';
+	import SkillAnimation from 'src/components/core/SkillAnimation.svelte';
 
 	onMount(() => {
 		startGame({
@@ -49,8 +50,10 @@
 		</div>
 	</main>
 	<GameMenu />
-	<SkillAudio />
 </div>
+
+<SkillAudio />
+<SkillAnimation />
 
 <style>
 </style>
