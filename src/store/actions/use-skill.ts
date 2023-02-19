@@ -4,8 +4,12 @@ import type { Skill } from 'src/types';
 import { removeActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
 import { deselectSkill } from '../game/skill';
+import { playSkillSound } from '../game/skill-sound';
 
 export const useSkill = (skill: Skill, character: CharacterGameEntity) => {
+	if (skill.audio) {
+		playSkillSound(skill.audio.onCast);
+	}
 	game.update((value) => {
 		const clone = structuredClone(value);
 

@@ -13,7 +13,8 @@ export const enemies = [
 				damageMultiplier: 1,
 				name: 'Slime Attack',
 				icon: '🐌',
-				cost: 50
+				cost: 50,
+				audio: null
 			}
 		]
 	}

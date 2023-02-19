@@ -65,7 +65,7 @@
 
 				<section class="mt-4">
 					{#each $selectedCharacter.skills as skill}
-						<button on:click={() => handleSelectSkill(skill)}>
+						<button on:click|preventDefault|stopPropagation={() => handleSelectSkill(skill)}>
 							<img width="40" height="40" alt={skill.name} src={skill.icon} />
 						</button>
 					{/each}

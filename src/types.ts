@@ -4,6 +4,10 @@ export interface Skill {
 	damageMultiplier: number;
 	icon: string;
 	cost: number;
+	audio: {
+		onSelect: string;
+		onCast: string;
+	} | null;
 }
 
 export interface Character {

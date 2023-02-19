@@ -8,6 +8,8 @@
 	import { startGame } from '../../store/actions/start-game';
 	import GameEntityController from 'src/components/game-entity/GameEntityController.svelte';
 	import { finishTurn } from 'src/store/actions/finish-turn';
+	import SkillAudio from 'src/components/core/SkillAudio.svelte';
+	import { deselectSkill } from 'src/store/game/skill';
 
 	onMount(() => {
 		startGame({
@@ -21,9 +23,14 @@
 		.some((entity) => entity.type === 'enemy' && entity.character.currentHealth >= 0);
 </script>
 
-<div class="flex  px-32 items-center min-h-screen justify-between">
+<div
+	class="flex  px-32 items-center min-h-screen justify-between"
+	on:click={() => {
+		deselectSkill();
+	}}
+>
 	<CharacterSideMenu />
-	<main>
+	<main on:click|preventDefault|stopPropagation>
 		{#if isAllEnemiesDead}
 			<h1 class="text-xl text-center">VICTORY!!!</h1>
 		{/if}
@@ -42,6 +49,7 @@
 		</div>
 	</main>
 	<GameMenu />
+	<SkillAudio />
 </div>
 
 <style>
