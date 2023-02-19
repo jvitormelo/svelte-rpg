@@ -24,5 +24,5 @@
 		currentDragging.set(null);
 	}}
 	style="background-image: url({character.image});"
-	class={`absolute z-10 rounded-full top-0 left-0 h-full w-full bg-cover bg-no-repeat bg-center cursor-pointer`}
+	class="rounded-full bg-cover bg-no-repeat bg-center cursor-pointer"
 />

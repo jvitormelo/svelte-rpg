@@ -63,9 +63,10 @@
 
 <div
 	on:click={handleClick}
+	on:dragstart|preventDefault
 	on:drop|preventDefault={handleDrop}
-	draggable="false"
-	class="absolute z-10 top-0 left-0 h-full w-full glass-background rounded-md"
+	draggable={false}
+	class="glass-background rounded-md"
 	style="background-color: {background}; cursor: {inSkillArea ? 'pointer' : 'default'};"
 />
 
