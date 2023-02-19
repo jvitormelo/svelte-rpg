@@ -25,3 +25,12 @@ export const selectedCharacter = derived(
 	},
 	null
 );
+
+export const isPlayerDead = derived(
+	selectedCharacter,
+	(value) => {
+		if (!value) return false;
+		return value.health <= 0;
+	},
+	false
+);

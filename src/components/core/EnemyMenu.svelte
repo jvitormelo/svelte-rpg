@@ -12,7 +12,7 @@
 	{#if selectedEnemy && selectedEnemy.type === 'enemy'}
 		<EntityInfo showDescription character={selectedEnemy.character} />
 		<div class="flex mt-2">
-			<button class="btn  mx-auto bg-red-600" on:click={deselectEnemy}>close</button>
+			<button class="btn  mx-auto bg-red-600" on:click={deselectEnemy}>❌</button>
 		</div>
 	{/if}
 </aside>

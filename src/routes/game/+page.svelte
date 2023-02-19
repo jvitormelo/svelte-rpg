@@ -1,16 +1,16 @@
 <script lang="ts">
+	import GameEntityController from 'src/components/game-entity/GameEntityController.svelte';
+	import { finishTurn } from 'src/store/actions/finish-turn';
 	import { onMount } from 'svelte';
-	import CharacterSideMenu from '../../components/core/CharacterSideMenu.svelte';
+	import CharacterSideMenu from '../../components/core/CharacterMenu.svelte';
 	import GameMenu from '../../components/core/EnemyMenu.svelte';
 	import { availableCharacters } from '../../data/characters';
 	import { generateId } from '../../lib/utils/generate-id';
-	import { game } from '../../store/game/game';
 	import { startGame } from '../../store/actions/start-game';
-	import GameEntityController from 'src/components/game-entity/GameEntityController.svelte';
-	import { finishTurn } from 'src/store/actions/finish-turn';
-	import SkillAudio from 'src/components/core/SkillAudio.svelte';
+	import { game } from '../../store/game/game';
+	import SkillAnimation from 'src/components/game/SkillAnimation.svelte';
+	import SkillAudio from 'src/components/game/SkillAudio.svelte';
 	import { deselectSkill } from 'src/store/game/skill';
-	import SkillAnimation from 'src/components/core/SkillAnimation.svelte';
 
 	onMount(() => {
 		startGame({
@@ -29,9 +29,14 @@
 	on:click={() => {
 		deselectSkill();
 	}}
+	on:keydown={(e) => {
+		if (e.key === 'Escape') {
+			deselectSkill();
+		}
+	}}
 >
 	<CharacterSideMenu />
-	<main on:click|preventDefault|stopPropagation>
+	<main on:click|preventDefault|stopPropagation on:keydown>
 		{#if isAllEnemiesDead}
 			<h1 class="text-xl text-center">VICTORY!!!</h1>
 		{/if}

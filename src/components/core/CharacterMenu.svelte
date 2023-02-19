@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { actionPoints } from '../../store/game/action-points';
 	import { game } from '../../store/game/game';
+	import { selectedCharacter } from '../../store/game/selected-character';
 	import { deselectSkill, selectedSkill, selectSkill } from '../../store/game/skill';
-	import { selectedCharacter, selectedCharacterId } from '../../store/game/selected-character';
 	import type { Skill } from '../../types';
 	import EntityInfo from './EntityInfo.svelte';
 
@@ -28,6 +28,10 @@
 				position: foundPosition.position
 			});
 		}
+	}
+
+	$: if ($selectedCharacter && $selectedCharacter?.currentHealth <= 0) {
+		alert('You are dead');
 	}
 </script>
 

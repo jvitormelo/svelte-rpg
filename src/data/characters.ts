@@ -9,14 +9,14 @@ export const availableCharacters = [
 		image: Shadow,
 		attack: 5,
 		health: 20,
-		defense: Number.MAX_SAFE_INTEGER,
+		defense: 5,
 		description: 'The ultimate being.',
 		skills: [
 			{
 				icon: Atomic,
 				name: "I'm atomic",
 				aoe: 5,
-				damageMultiplier: 1,
+				damageMultiplier: 5,
 				cost: 50,
 				audio: {
 					onSelect: ShadowOST,
