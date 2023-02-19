@@ -2,26 +2,41 @@
 	import type { VirtualCharacter } from '../../games-type';
 
 	export let character: VirtualCharacter;
+
+	export let showDescription = false;
 </script>
 
-<div class="flex flex-col gap-4">
-	<img src={character.image} alt={character.name} />
-	<h3>{character.name}</h3>
-	<div>
-		Health: {character.currentHealth} / {character.health}
+<div class="flex flex-col gap-4 bg-black p-3 rounded-lg">
+	<img class="rounded-lg" src={character.image} alt={character.name} />
+	<h3 class="text-center text-2xl text-bold text-white">{character.name}</h3>
+
+	<slot name="body" />
+
+	<div class="flex flex-col">
+		<div class="flex">
+			❤
+			<progress
+				class="rounded-lg ml-2 h-[24px] w-full relative"
+				value={character.currentHealth}
+				max={character.health}
+			/>
+		</div>
+		<div class="mx-auto">
+			{character.currentHealth}/{character.health}
+		</div>
 	</div>
 	<div>
-		Attack: {character.attack}
+		⚔ {character.attack}
 	</div>
 	<div>
-		Defense: {character.defense}
+		🛡 {character.defense}
 	</div>
 
-	<div>
-		Defense: {character.defense}
-	</div>
+	{#if showDescription}
+		<div>
+			{character.description}
+		</div>
+	{/if}
 
-	<div>
-		{character.description}
-	</div>
+	<slot name="bottom" />
 </div>

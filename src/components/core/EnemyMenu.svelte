@@ -8,9 +8,11 @@
 		.find((item) => item.type === 'enemy' && item.character.id === $selectedEnemyId);
 </script>
 
-<aside class="artboard phone-1 bg-black">
+<aside class="artboard phone-1">
 	{#if selectedEnemy && selectedEnemy.type === 'enemy'}
-		<button on:click={deselectEnemy}>close</button>
-		<EntityInfo character={selectedEnemy.character} />
+		<EntityInfo showDescription character={selectedEnemy.character} />
+		<div class="flex mt-2">
+			<button class="btn  mx-auto bg-red-600" on:click={deselectEnemy}>close</button>
+		</div>
 	{/if}
 </aside>

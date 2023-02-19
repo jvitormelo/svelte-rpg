@@ -7,8 +7,8 @@ export const availableCharacters = [
 	{
 		name: 'Shadow',
 		image: Shadow,
-		attack: Number.MAX_SAFE_INTEGER,
-		health: Number.MAX_SAFE_INTEGER,
+		attack: 5,
+		health: 20,
 		defense: Number.MAX_SAFE_INTEGER,
 		description: 'The ultimate being.',
 		skills: [
