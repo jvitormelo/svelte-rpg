@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import CharacterSideMenu from '../../components/core/CharacterSideMenu.svelte';
 	import GameEntityController from '../../components/core/game-entity/GameEntityController.svelte';
-	import GameMenu from '../../components/core/GameMenu.svelte';
+	import GameMenu from '../../components/core/EnemyMenu.svelte';
 	import { availableCharacters } from '../../data/characters';
 	import { generateId } from '../../lib/utils/generate-id';
 	import { game, startGame } from '../../store/game/game';
