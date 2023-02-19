@@ -6,8 +6,10 @@ import { game } from '../game/game';
 import { deselectSkill } from '../game/skill';
 import { playSkillAnimation } from '../game/skill-animation';
 import { playSkillSound } from '../game/skill-sound';
+import { applyDamage } from './apply-damage';
+import { createSkillDamage } from './create-skill-damage';
 
-export const useSkill = async (skill: Skill, character: CharacterGameEntity) => {
+export const useSkill = async (skill: Skill, entity: CharacterGameEntity) => {
 	if (skill.audio) {
 		playSkillSound(skill.audio.onCast);
 		await playSkillAnimation(2000);
@@ -15,7 +17,7 @@ export const useSkill = async (skill: Skill, character: CharacterGameEntity) => 
 	game.update((value) => {
 		const clone = structuredClone(value);
 
-		const { x, y } = character.position;
+		const { x, y } = entity.position;
 		const { aoe } = skill;
 
 		for (let i = 0; i < clone.length; i++) {
@@ -28,15 +30,7 @@ export const useSkill = async (skill: Skill, character: CharacterGameEntity) => 
 					const entity = row[j];
 
 					if (entity.type === 'enemy') {
-						clone[i][j] = {
-							...entity,
-							character: {
-								...entity.character,
-								currentHealth:
-									entity.character.currentHealth -
-									character.character.attack * skill.damageMultiplier
-							}
-						};
+						clone[i][j] = applyDamage(createSkillDamage(skill, entity), entity);
 					}
 				}
 			}

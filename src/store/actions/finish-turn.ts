@@ -2,6 +2,8 @@ import type { CombatEntity } from 'src/games-type';
 import { getDistance } from 'src/lib/utils/get-distance';
 import { addActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
+import { applyDamage } from './apply-damage';
+import { createSkillDamage } from './create-skill-damage';
 
 export const finishTurn = () => {
 	game.update((value) => {
@@ -15,7 +17,7 @@ export const finishTurn = () => {
 
 		const allEnemies = flatted.filter((entity) => entity.type === 'enemy');
 
-		const applyDamage: { x: number; y: number; damage: number }[] = [];
+		const toApplyDamage: { x: number; y: number; damage: number }[] = [];
 
 		const enemiesMovement = allEnemies.map((entity) => {
 			if (entity.type !== 'enemy') return;
@@ -29,10 +31,10 @@ export const finishTurn = () => {
 			);
 
 			if (distance === 1) {
-				applyDamage.push({
+				toApplyDamage.push({
 					x: player.position.x,
 					y: player.position.y,
-					damage: entity.character.attack * entity.character.skills[0].damageMultiplier
+					damage: createSkillDamage(entity.character.skills[0], entity)
 				});
 				return null;
 			}
@@ -71,16 +73,10 @@ export const finishTurn = () => {
 			};
 		});
 
-		applyDamage.forEach(({ x, y, damage }) => {
+		toApplyDamage.forEach(({ x, y, damage }) => {
 			const ref = clonedGame[x][y] as CombatEntity;
 			if ('character' in ref) {
-				clonedGame[x][y] = {
-					...clonedGame[x][y],
-					character: {
-						...ref.character,
-						currentHealth: ref.character.currentHealth - damage
-					}
-				} as CombatEntity;
+				clonedGame[x][y] = applyDamage(damage, ref);
 			}
 		});
 

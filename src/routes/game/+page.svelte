@@ -12,6 +12,7 @@
 	import SkillAudio from 'src/components/game/SkillAudio.svelte';
 	import { deselectSkill } from 'src/store/game/skill';
 	import DeathScreen from 'src/components/game/DeathScreen.svelte';
+	import DamageTaken from 'src/components/game/DamageTaken.svelte';
 
 	onMount(() => {
 		startGame({
