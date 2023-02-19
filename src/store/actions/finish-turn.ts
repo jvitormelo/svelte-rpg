@@ -1,31 +1,57 @@
+import type { CombatEntity } from 'src/games-type';
+import { getDistance } from 'src/lib/utils/get-distance';
+import { addActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
 
 export const finishTurn = () => {
 	game.update((value) => {
 		const clonedGame = structuredClone(value);
 
-		const allEnemies = clonedGame.flat(2).filter((entity) => entity.type === 'enemy');
+		const flatted = clonedGame.flat(2);
+
+		const player = flatted.find((entity) => entity.type === 'character');
+
+		if (!player) return clonedGame;
+
+		const allEnemies = flatted.filter((entity) => entity.type === 'enemy');
+
+		const applyDamage: { x: number; y: number; damage: number }[] = [];
 
 		const enemiesMovement = allEnemies.map((entity) => {
-			if (entity.type === 'enemy') {
-				const newPosition = findClosestEntity(entity.position.x, entity.position.y, clonedGame);
+			if (entity.type !== 'enemy') return;
+			if (entity.character.currentHealth <= 0) return;
 
-				if (newPosition) {
-					return {
-						oldX: entity.position.x,
-						oldY: entity.position.y,
-						newX: newPosition[0],
-						newY: newPosition[1],
-						character: entity.character
-					};
-				}
+			const distance = getDistance(
+				entity.position.x,
+				entity.position.y,
+				player.position.x,
+				player.position.y
+			);
+
+			if (distance === 1) {
+				applyDamage.push({
+					x: player.position.x,
+					y: player.position.y,
+					damage: entity.character.attack * entity.character.skills[0].damageMultiplier
+				});
+				return null;
+			}
+
+			const newPosition = findClosestEntity(entity.position.x, entity.position.y, clonedGame);
+
+			if (newPosition) {
+				return {
+					oldX: entity.position.x,
+					oldY: entity.position.y,
+					newX: newPosition[0],
+					newY: newPosition[1],
+					character: entity.character
+				};
 			}
 		});
 
 		enemiesMovement.forEach((movement) => {
 			if (!movement) return;
-
-			console.log('a');
 
 			clonedGame[movement.oldX][movement.oldY] = {
 				type: 'empty',
@@ -45,8 +71,23 @@ export const finishTurn = () => {
 			};
 		});
 
+		applyDamage.forEach(({ x, y, damage }) => {
+			const ref = clonedGame[x][y] as CombatEntity;
+			if ('character' in ref) {
+				clonedGame[x][y] = {
+					...clonedGame[x][y],
+					character: {
+						...ref.character,
+						currentHealth: ref.character.currentHealth - damage
+					}
+				} as CombatEntity;
+			}
+		});
+
 		return clonedGame;
 	});
+
+	addActionsPoints(100);
 };
 
 function findClosestEntity(enemyX: number, enemyY: number, entities: { type: string }[][]) {

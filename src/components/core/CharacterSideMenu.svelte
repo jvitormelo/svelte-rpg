@@ -45,6 +45,7 @@
 					<div class="bg-red-500 w-1/2 h-4 rounded-full">
 						<div class="bg-green-500 h-full rounded-full" style="width: 50%" />
 					</div>
+					{$selectedCharacter.currentHealth} /
 					{$selectedCharacter.health}
 				</div>
 
