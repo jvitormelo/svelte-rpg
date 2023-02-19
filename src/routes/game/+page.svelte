@@ -27,11 +27,11 @@
 			<h1 class="text-xl text-center">VICTORY!!!</h1>
 		{/if}
 
-		<div class="flex border-2 border-black gap-1">
+		<div class="flex border-2 border-black gap-1" on:dragover|preventDefault>
 			{#each $game as row}
 				<div class="flex flex-col gap-1">
 					{#each row as entity}
-						<div class="p-12 relative glass-background" on:dragover|preventDefault>
+						<div draggable={false} class="p-12 relative glass-background">
 							<GameEntityController {entity} />
 						</div>
 					{/each}

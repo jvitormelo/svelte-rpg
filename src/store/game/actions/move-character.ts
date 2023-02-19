@@ -1,7 +1,18 @@
+import { get } from 'svelte/store';
+import { MOVE_COST } from '../../../constants';
 import type { MoveableEntity } from '../../../games-type';
+import { actionPoints } from '../action-points';
 import { game } from '../game';
 
 export const moveEntity = (x: number, y: number, entity: MoveableEntity) => {
+	// good idea
+	// const haveEnergy = get(actionPoints) >= entity.character.moveCost;
+	const haveEnergy = get(actionPoints) >= MOVE_COST;
+
+	if (!haveEnergy) {
+		return alert("You don't have enough energy to move!");
+	}
+
 	game.update((game) => {
 		const clone = structuredClone(game);
 
@@ -42,4 +53,6 @@ export const moveEntity = (x: number, y: number, entity: MoveableEntity) => {
 
 		return clone;
 	});
+
+	actionPoints.update((actionPoints) => actionPoints - MOVE_COST);
 };

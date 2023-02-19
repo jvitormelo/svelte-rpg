@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { MOVE_COST } from '../../../constants';
 	import type { Position } from '../../../games-type';
 	import { isBetween } from '../../../lib/utils/between';
+	import { actionPoints } from '../../../store/game/action-points';
 
 	import { moveEntity } from '../../../store/game/actions/move-character';
 	import { useSkill } from '../../../store/game/actions/use-skill';
@@ -14,16 +16,19 @@
 		? handleAreaSkill($selectedSkill.skill, $selectedSkill.character.position)
 		: false;
 
-	$: moveable = $currentDragging
-		? ($currentDragging?.position.x + 1 === position.x &&
-				$currentDragging?.position.y === position.y) ||
-		  ($currentDragging?.position.x + -1 === position.x &&
-				$currentDragging?.position.y === position.y) ||
-		  ($currentDragging?.position.x === position.x &&
-				$currentDragging?.position.y + 1 === position.y) ||
-		  ($currentDragging?.position.x === position.x &&
-				$currentDragging?.position.y + -1 === position.y)
-		: false;
+	$: moveable =
+		$actionPoints >= MOVE_COST
+			? $currentDragging
+				? ($currentDragging?.position.x + 1 === position.x &&
+						$currentDragging?.position.y === position.y) ||
+				  ($currentDragging?.position.x + -1 === position.x &&
+						$currentDragging?.position.y === position.y) ||
+				  ($currentDragging?.position.x === position.x &&
+						$currentDragging?.position.y + 1 === position.y) ||
+				  ($currentDragging?.position.x === position.x &&
+						$currentDragging?.position.y + -1 === position.y)
+				: false
+			: false;
 
 	function handleAreaSkill(selectedSkill: Skill, characterPosition: Position['position']) {
 		const { x, y } = characterPosition;

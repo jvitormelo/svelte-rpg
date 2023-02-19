@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { actionPoints } from '../../store/game/action-points';
 	import { game } from '../../store/game/game';
 	import { deselectSkill, selectedSkill, selectSkill } from '../../store/game/skill';
 	import { selectedCharacter, selectedCharacterId } from '../../store/selected-character';
@@ -53,6 +54,10 @@
 				<h5 class="text-center my-4 text-2xl font-bold">Attack</h5>
 				<div>
 					{$selectedCharacter.attack}
+				</div>
+
+				<div>
+					Actions points: {$actionPoints}
 				</div>
 
 				<section class="mt-4">
