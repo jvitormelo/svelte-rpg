@@ -21,7 +21,7 @@ interface TerrainEntity {
 
 type AllEntities = ICharacterEntity | IEnemyEntity | EmptyEntity | TerrainEntity;
 
-type Position = {
+export type Position = {
 	position: {
 		x: number;
 		y: number;

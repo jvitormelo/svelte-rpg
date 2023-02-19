@@ -8,11 +8,11 @@
 </script>
 
 {#if entity.type === 'character'}
-	<CharacterEntity character={entity.character} />
+	<CharacterEntity position={entity.position} character={entity.character} />
 {:else if entity.type === 'enemy'}
 	<EnemyEntity character={entity.character} />
 {:else if entity.type === 'empty'}
-	<EmptyEntity />
+	<EmptyEntity position={entity.position} />
 {:else if entity.type === 'terrain'}
 	<div>terrain</div>
 {/if}

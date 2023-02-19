@@ -23,7 +23,6 @@
 					}}
 					on:dragstart={(e) => {
 						isDragging = true;
-						console.log('a');
 					}}
 					draggable={true}
 					hidden={active !== index}

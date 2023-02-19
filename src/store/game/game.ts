@@ -18,9 +18,12 @@ const enemyPositions = [
 	},
 	{
 		x: 0,
-		y: 7
+		y: 3
 	}
 ];
+
+const ROW_LENGTH = 4;
+const COLUMN_LENGTH = 4;
 
 export const startGame = (character: Character) => {
 	const startPosition = {
@@ -30,10 +33,10 @@ export const startGame = (character: Character) => {
 
 	selectedCharacter.set(character);
 	const newGame: Game = [];
-	for (let i = 0; i < 8; i++) {
+	for (let i = 0; i < ROW_LENGTH; i++) {
 		const row: GameEntity[] = [];
 
-		for (let j = 0; j < 8; j++) {
+		for (let j = 0; j < COLUMN_LENGTH; j++) {
 			const position = {
 				x: i,
 				y: j
@@ -69,7 +72,3 @@ export const startGame = (character: Character) => {
 
 	isGameStarted.set(true);
 };
-
-game.subscribe((game) => {
-	console.log(game);
-});

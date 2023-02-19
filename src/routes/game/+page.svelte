@@ -4,6 +4,7 @@
 	import { availableCharacters } from '../../data/characters';
 	import { generateId } from '../../lib/assets/characters/utils/generate-id';
 	import { moveEntity } from '../../store/game/actions/move-character';
+	import { currentDragging } from '../../store/game/drag';
 	import { game, startGame } from '../../store/game/game';
 	import { selectedCharacter } from '../../store/selected-chacter';
 
@@ -20,17 +21,7 @@
 		{#each $game as row, x}
 			<div class="flex flex-col gap-1">
 				{#each row as entity, y}
-					<div
-						on:drop|preventDefault={(e) => {
-							if (!$selectedCharacter) return;
-							moveEntity(x, y, {
-								type: 'character',
-								character: $selectedCharacter
-							});
-						}}
-						class="p-12 relative glass-background"
-						on:dragover|preventDefault
-					>
+					<div class="p-12 relative glass-background" on:dragover|preventDefault>
 						<GameEntityController {entity} />
 					</div>
 				{/each}
