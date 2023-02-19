@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import GameEntityController from '../../components/core/game-entity/GameEntityController.svelte';
 	import { availableCharacters } from '../../data/characters';
+	import { generateId } from '../../lib/assets/characters/utils/generate-id';
 	import { moveEntity } from '../../store/game/actions/move-character';
 	import { game, startGame } from '../../store/game/game';
 	import { selectedCharacter } from '../../store/selected-chacter';
@@ -9,7 +10,7 @@
 	onMount(() => {
 		startGame({
 			...availableCharacters[0],
-			id: Date.now().toString()
+			id: generateId()
 		});
 	});
 </script>

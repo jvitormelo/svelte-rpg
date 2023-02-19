@@ -1,5 +1,7 @@
 import { writable } from 'svelte/store';
+import { enemies } from '../../data/enemies';
 import type { GameEntity } from '../../games-type';
+import { generateId } from '../../lib/assets/characters/utils/generate-id';
 import type { Character } from '../../types';
 import { selectedCharacter } from '../selected-chacter';
 
@@ -8,6 +10,17 @@ export const isGameStarted = writable(false);
 type Game = GameEntity[][];
 
 export const game = writable<Game>([[]]);
+
+const enemyPositions = [
+	{
+		x: 0,
+		y: 0
+	},
+	{
+		x: 0,
+		y: 7
+	}
+];
 
 export const startGame = (character: Character) => {
 	const startPosition = {
@@ -26,7 +39,17 @@ export const startGame = (character: Character) => {
 				y: j
 			};
 
-			if (i === startPosition.x && j === startPosition.y) {
+			const foundEnemy = enemyPositions.find(
+				(enemyPosition) => enemyPosition.x === i && enemyPosition.y === j
+			);
+
+			if (foundEnemy) {
+				row.push({
+					character: { ...enemies[0], id: generateId() },
+					type: 'enemy',
+					position
+				});
+			} else if (i === startPosition.x && j === startPosition.y) {
 				row.push({
 					type: 'character',
 					character: character,
@@ -44,7 +67,9 @@ export const startGame = (character: Character) => {
 	}
 	game.set(newGame);
 
-	console.log('a');
-
 	isGameStarted.set(true);
 };
+
+game.subscribe((game) => {
+	console.log(game);
+});

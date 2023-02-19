@@ -3,6 +3,7 @@ import { game } from '../game';
 
 export const moveEntity = (x: number, y: number, entity: MoveableEntity) => {
 	game.update((game) => {
+		console.log(game.flat(2).map((row) => 'character' in row && row.character.id));
 		const clone = structuredClone(game);
 
 		const oldEntity = clone
@@ -10,6 +11,8 @@ export const moveEntity = (x: number, y: number, entity: MoveableEntity) => {
 			.find(
 				(rowEntity) => 'character' in rowEntity && rowEntity.character.id === entity.character.id
 			);
+
+		console.log(oldEntity);
 
 		if (oldEntity) {
 			clone[oldEntity.position.x][oldEntity.position.y] = {
@@ -38,8 +41,6 @@ export const moveEntity = (x: number, y: number, entity: MoveableEntity) => {
 				character: entity.character,
 				position
 			};
-		} else {
-			throw new Error('Wtf are u trying to move?');
 		}
 
 		return clone;

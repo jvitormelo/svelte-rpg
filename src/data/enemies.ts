@@ -4,8 +4,8 @@ export const enemies = [
 		defense: 10,
 		description: 'A small, weak enemy.',
 		health: 10,
-		id: 'slime',
-		image: 'https://i.imgur.com/9ZQ3Z9C.png',
+		image:
+			'https://th.bing.com/th/id/R.b4f1ac41b1befbefe6b7a53596bfb88e?rik=BO2FgtBUE9v%2bBA&pid=ImgRaw&r=0',
 		name: 'Slime',
 		skills: [
 			{
