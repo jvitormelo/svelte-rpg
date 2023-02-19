@@ -1,4 +1,17 @@
 import { writable } from 'svelte/store';
-import type { MoveableEntity, Position } from '../../games-type';
+import type { Position } from '../../games-type';
 
-export const currentDragging = writable<(MoveableEntity & Position) | null>(null);
+interface Store {
+	position: Position['position'];
+	entityId: string;
+}
+
+export const currentDragging = writable<Store | null>(null);
+
+export const setCurrentDragging = ({ entityId, position }: Store) => {
+	currentDragging.set({ entityId, position });
+};
+
+export const removeCurrentDragging = () => {
+	currentDragging.set(null);
+};

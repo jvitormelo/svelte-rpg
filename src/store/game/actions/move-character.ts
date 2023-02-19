@@ -4,7 +4,7 @@ import type { MoveableEntity } from '../../../games-type';
 import { actionPoints } from '../action-points';
 import { game } from '../game';
 
-export const moveEntity = (x: number, y: number, entity: MoveableEntity) => {
+export const moveEntity = (x: number, y: number, entityId: string) => {
 	// good idea
 	// const haveEnergy = get(actionPoints) >= entity.character.moveCost;
 	const haveEnergy = get(actionPoints) >= MOVE_COST;
@@ -16,21 +16,21 @@ export const moveEntity = (x: number, y: number, entity: MoveableEntity) => {
 	game.update((game) => {
 		const clone = structuredClone(game);
 
-		const oldEntity = clone
+		const entity = clone
 			.flat(2)
-			.find(
-				(rowEntity) => 'character' in rowEntity && rowEntity.character.id === entity.character.id
-			);
+			.find((rowEntity) => 'character' in rowEntity && rowEntity.character.id === entityId);
 
-		if (oldEntity) {
-			clone[oldEntity.position.x][oldEntity.position.y] = {
-				type: 'empty',
-				position: {
-					x: oldEntity.position.x,
-					y: oldEntity.position.y
-				}
-			};
+		if (!entity) {
+			throw new Error('Entity not found');
 		}
+
+		clone[entity.position.x][entity.position.y] = {
+			type: 'empty',
+			position: {
+				x: entity.position.x,
+				y: entity.position.y
+			}
+		};
 
 		const position = {
 			x,

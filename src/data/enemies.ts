@@ -12,7 +12,8 @@ export const enemies = [
 				aoe: 1,
 				damageMultiplier: 1,
 				name: 'Slime Attack',
-				icon: '🐌'
+				icon: '🐌',
+				cost: 50
 			}
 		]
 	}

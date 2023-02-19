@@ -1,0 +1,32 @@
+<script lang="ts">
+	import { MOVE_COST } from '../../constants';
+	import type { Position } from '../../games-type';
+	import { actionPoints } from '../../store/game/action-points';
+	import { removeCurrentDragging, setCurrentDragging } from '../../store/game/drag';
+	import type { Character } from '../../types';
+
+	export let character: Character;
+	export let position: Position['position'];
+
+	function onDragStart() {
+		if ($actionPoints < MOVE_COST) return alert('Not enough action points');
+		setCurrentDragging({
+			entityId: character.id,
+			position
+		});
+	}
+
+	function onDragEnd() {
+		removeCurrentDragging();
+	}
+
+	$: canMove = $actionPoints >= MOVE_COST;
+</script>
+
+<div
+	draggable={canMove}
+	on:dragstart={onDragStart}
+	on:dragend={onDragEnd}
+	style="background-image: url({character.image});"
+	class="rounded-full bg-cover bg-no-repeat bg-center cursor-pointer"
+/>

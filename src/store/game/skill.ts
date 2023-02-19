@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import type { CharacterGameEntity } from '../../games-type';
-import type { Character, Skill } from '../../types';
+import type { Skill } from '../../types';
 
 type State = {
 	skill: Skill;

@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { MOVE_COST } from '../../../constants';
-	import type { Position } from '../../../games-type';
-	import { isBetween } from '../../../lib/utils/between';
-	import { actionPoints } from '../../../store/game/action-points';
-
-	import { moveEntity } from '../../../store/game/actions/move-character';
-	import { useSkill } from '../../../store/game/actions/use-skill';
-	import { currentDragging } from '../../../store/game/drag';
-	import { selectedSkill } from '../../../store/game/skill';
-	import type { Skill } from '../../../types';
+	import { MOVE_COST } from 'src/constants';
+	import type { Position } from 'src/games-type';
+	import { isBetween } from 'src/lib/utils/between';
+	import { actionPoints } from 'src/store/game/action-points';
+	import { moveEntity } from 'src/store/game/actions/move-character';
+	import { useSkill } from 'src/store/game/actions/use-skill';
+	import { currentDragging } from 'src/store/game/drag';
+	import { selectedSkill } from 'src/store/game/skill';
+	import type { Skill } from 'src/types';
 
 	export let position: Position['position'];
 
@@ -40,10 +39,7 @@
 	function handleDrop() {
 		if (!moveable || !$currentDragging) return;
 
-		moveEntity(position.x, position.y, {
-			type: 'character',
-			character: $currentDragging.character
-		});
+		moveEntity(position.x, position.y, $currentDragging.entityId);
 
 		currentDragging.set(null);
 	}

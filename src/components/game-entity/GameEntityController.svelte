@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GameEntity } from '../../../games-type';
+	import type { GameEntity } from 'src/games-type';
 	import CharacterEntity from './CharacterEntity.svelte';
 	import EmptyEntity from './EmptyEntity.svelte';
 	import EnemyEntity from './EnemyEntity.svelte';

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import CharacterSideMenu from '../../components/core/CharacterSideMenu.svelte';
-	import GameEntityController from '../../components/core/game-entity/GameEntityController.svelte';
 	import GameMenu from '../../components/core/EnemyMenu.svelte';
 	import { availableCharacters } from '../../data/characters';
 	import { generateId } from '../../lib/utils/generate-id';
 	import { game } from '../../store/game/game';
 	import { startGame } from '../../store/game/actions/start-game';
+	import GameEntityController from 'src/components/game-entity/GameEntityController.svelte';
 
 	onMount(() => {
 		startGame({

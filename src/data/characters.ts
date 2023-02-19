@@ -14,7 +14,8 @@ export const availableCharacters = [
 				icon: Atomic,
 				name: "I'm atomic",
 				aoe: 5,
-				damageMultiplier: 1
+				damageMultiplier: 1,
+				cost: 50
 			}
 		]
 	}
