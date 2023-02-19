@@ -1,13 +1,21 @@
 import type { Character, Enemy, Terrain } from './types';
 
+type Virtual = {
+	currentHealth: number;
+};
+
+export type VirtualCharacter = Character & Virtual;
+
+export type VirtualEnemy = Enemy & Virtual;
+
 export interface ICharacterEntity {
 	type: 'character';
-	character: Character;
+	character: VirtualCharacter;
 }
 
 export interface IEnemyEntity {
 	type: 'enemy';
-	character: Enemy;
+	character: VirtualEnemy;
 }
 
 interface EmptyEntity {

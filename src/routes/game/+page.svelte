@@ -5,7 +5,8 @@
 	import GameMenu from '../../components/core/EnemyMenu.svelte';
 	import { availableCharacters } from '../../data/characters';
 	import { generateId } from '../../lib/utils/generate-id';
-	import { game, startGame } from '../../store/game/game';
+	import { game } from '../../store/game/game';
+	import { startGame } from '../../store/game/actions/start-game';
 
 	onMount(() => {
 		startGame({

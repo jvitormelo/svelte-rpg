@@ -3,7 +3,8 @@
 	import CharacterCard from '../../components/core/CharacterCard.svelte';
 	import { availableCharacters } from '../../data/characters';
 	import { generateId } from '../../lib/utils/generate-id';
-	import { startGame } from '../../store/game/game';
+	import { startGame } from '../../store/game/actions/start-game';
+
 	import type { Character } from '../../types';
 
 	function selectCharacter(character: Omit<Character, 'id'>) {

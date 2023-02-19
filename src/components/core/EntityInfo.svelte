@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { Character } from '../../types';
+	import type { VirtualCharacter } from '../../games-type';
 
-	export let character: Character;
+	export let character: VirtualCharacter;
 </script>
 
 <div class="flex flex-col gap-4">
 	<img src={character.image} alt={character.name} />
 	<h3>{character.name}</h3>
 	<div>
-		Health: {character.health}
+		Health: {character.currentHealth} / {character.health}
 	</div>
 	<div>
 		Attack: {character.attack}

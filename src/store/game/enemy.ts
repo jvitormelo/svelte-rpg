@@ -1,12 +1,11 @@
 import { writable } from 'svelte/store';
-import type { Enemy } from '../../types';
 
-export const selectedEnemy = writable<Enemy | null>(null);
+export const selectedEnemyId = writable<string | null>(null);
 
-export const selectEnemy = (enemy: Enemy) => {
-	selectedEnemy.set(enemy);
+export const selectEnemy = (enemyId: string) => {
+	selectedEnemyId.set(enemyId);
 };
 
 export const deselectEnemy = () => {
-	selectedEnemy.set(null);
+	selectedEnemyId.set(null);
 };

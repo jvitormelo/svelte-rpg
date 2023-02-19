@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { game } from '../../store/game/game';
 	import { deselectSkill, selectedSkill, selectSkill } from '../../store/game/skill';
-	import { selectedCharacter } from '../../store/selected-character';
+	import { selectedCharacter, selectedCharacterId } from '../../store/selected-character';
 	import type { Skill } from '../../types';
 
-	function useSkill(skill: Skill) {
+	function handleSelectSkill(skill: Skill) {
 		if (skill.name === $selectedSkill?.skill.name) {
 			return deselectSkill();
 		}
@@ -30,7 +30,7 @@
 <aside>
 	{#if $selectedCharacter}
 		<div class="artboard phone-1 bg-black">
-			<img alt={$selectedCharacter?.name} src={$selectedCharacter?.image} />
+			<img alt={$selectedCharacter.name} src={$selectedCharacter.image} />
 
 			<h4 class="text-center my-4 text-3xl font-bold">
 				{$selectedCharacter.name}
@@ -57,7 +57,7 @@
 
 				<section class="mt-4">
 					{#each $selectedCharacter.skills as skill}
-						<button on:click={() => useSkill(skill)}>
+						<button on:click={() => handleSelectSkill(skill)}>
 							<img width="40" height="40" alt={skill.name} src={skill.icon} />
 						</button>
 					{/each}

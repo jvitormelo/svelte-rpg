@@ -13,7 +13,7 @@ export const availableCharacters = [
 			{
 				icon: Atomic,
 				name: "I'm atomic",
-				aoe: 2,
+				aoe: 1,
 				damageMultiplier: 1
 			}
 		]

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Position } from '../../../games-type';
 	import { isBetween } from '../../../lib/utils/between';
+	import { useSkill } from '../../../store/combat/actions';
 	import { moveEntity } from '../../../store/game/actions/move-character';
 	import { currentDragging } from '../../../store/game/drag';
 	import { selectedSkill } from '../../../store/game/skill';
@@ -28,8 +29,6 @@
 		const { aoe } = selectedSkill;
 
 		return isBetween(position.x, x - aoe, x + aoe) && isBetween(position.y, y - aoe, y + aoe);
-
-		return true;
 	}
 
 	function handleDrop() {
@@ -48,9 +47,16 @@
 		: inSkillArea
 		? 'rgba(255, 191, 255, 0.7)'
 		: 'rgba(0, 191, 255, 0.3)';
+
+	function handleClick() {
+		if ($selectedSkill) {
+			useSkill($selectedSkill.skill, $selectedSkill.character);
+		}
+	}
 </script>
 
 <div
+	on:click={handleClick}
 	on:drop|preventDefault={handleDrop}
 	draggable="false"
 	class="absolute z-10 top-0 left-0 h-full w-full glass-background rounded-md"

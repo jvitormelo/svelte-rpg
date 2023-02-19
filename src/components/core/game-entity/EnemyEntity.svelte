@@ -1,11 +1,11 @@
 <script lang="ts">
+	import type { VirtualEnemy } from '../../../games-type';
 	import { selectEnemy } from '../../../store/game/enemy';
-	import type { Character } from '../../../types';
 
-	export let character: Character;
+	export let character: VirtualEnemy;
 
 	function onClick() {
-		selectEnemy(character);
+		selectEnemy(character.id);
 	}
 </script>
 
