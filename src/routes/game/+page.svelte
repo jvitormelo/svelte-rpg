@@ -7,6 +7,7 @@
 	import { game } from '../../store/game/game';
 	import { startGame } from '../../store/actions/start-game';
 	import GameEntityController from 'src/components/game-entity/GameEntityController.svelte';
+	import { finishTurn } from 'src/store/actions/finish-turn';
 
 	onMount(() => {
 		startGame({
@@ -37,7 +38,7 @@
 			{/each}
 		</div>
 		<div class="flex">
-			<button class="btn mx-auto mt-4"> Finish turn </button>
+			<button class="btn mx-auto mt-4" on:click={finishTurn}> Finish turn </button>
 		</div>
 	</main>
 	<GameMenu />
