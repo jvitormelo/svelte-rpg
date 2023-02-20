@@ -1,5 +1,6 @@
 import { isBetween } from 'src/lib/utils/between';
 import { Random } from 'src/lib/utils/random';
+import type { Game } from 'src/store/game/game';
 import type { GameEntity, GameEntityWithCharacter } from 'src/types/game';
 import type { Skill } from 'src/types/types';
 import { NavigationDomain } from './navigation';
@@ -54,5 +55,21 @@ export class CombatDomain {
 		setTimeout(() => {
 			div.remove();
 		}, 1000);
+	}
+
+	static useSkillOnTarget(
+		skill: Skill,
+		caster: GameEntityWithCharacter,
+		target: GameEntityWithCharacter,
+		game: Game
+	) {
+		const damage = CombatDomain.calculateSkillDamage(skill, caster);
+		const entity = CombatDomain.applyDamageToEntity(damage, target);
+
+		game[entity.position.x][entity.position.y] = entity;
+	}
+
+	static isDead(entity: GameEntityWithCharacter) {
+		return entity.character.currentHealth <= 0;
 	}
 }

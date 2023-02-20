@@ -1,3 +1,4 @@
+import { CombatDomain } from 'src/domain/combat';
 import { GameDomain } from 'src/domain/game';
 import { NavigationDomain } from 'src/domain/navigation';
 import { getDistance } from 'src/lib/utils/get-distance';
@@ -12,14 +13,12 @@ export const finishTurn = () => {
 
 		const gameDomain = new GameDomain(clonedGame);
 
-		const player = gameDomain.findEntity<GameCharacterEntity>('character');
-
-		if (!player) return clonedGame;
-
 		const allEnemies = gameDomain.findAll<GameEnemyEntity>('enemy');
 
 		allEnemies.forEach((entity) => {
-			if (entity.character.currentHealth <= 0) return;
+			const player = gameDomain.findEntity<GameCharacterEntity>('character');
+
+			if (CombatDomain.isDead(entity)) return;
 
 			const distance = getDistance(
 				entity.position.x,
@@ -35,7 +34,7 @@ export const finishTurn = () => {
 
 				if (skill.audio?.onCast) spawnSound(skill.audio?.onCast);
 
-				gameDomain.useSkillOnTarget(skill, entity, player);
+				CombatDomain.useSkillOnTarget(skill, entity, player, clonedGame);
 
 				return;
 			}

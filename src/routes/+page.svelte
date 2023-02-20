@@ -12,9 +12,11 @@
 	}
 </script>
 
-<main class="min-h-screen flex justify-center items-center flex-col">
-	<h1 class="text-3xl mb-4">SVELTE GAME</h1>
-	{#each availableCharacters as character}
-		<CharacterCard {character} onClick={selectCharacter} />
-	{/each}
+<main class="min-h-screen flex justify-center items-center flex-col ">
+	<h1 class="text-3xl mb-4">SELECT YOUR CHARACTER!</h1>
+	<section class="flex gap-4">
+		{#each availableCharacters as character}
+			<CharacterCard {character} onClick={selectCharacter} />
+		{/each}
+	</section>
 </main>

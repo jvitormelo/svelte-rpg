@@ -6,8 +6,6 @@ import type {
 	GameEntity,
 	GameEntityWithCharacter
 } from 'src/types/game';
-import type { Skill } from 'src/types/types';
-import { CombatDomain } from './combat';
 
 type PossibleEntities = GameCharacterEntity | GameEnemyEntity | GameEntity;
 
@@ -35,12 +33,5 @@ export class GameDomain {
 		const flatted = this.game.flat(2);
 
 		return flatted.find((entity) => 'character' in entity && entity.character.id === id) as T;
-	}
-
-	useSkillOnTarget(skill: Skill, caster: GameEntityWithCharacter, target: GameEntityWithCharacter) {
-		const damage = CombatDomain.calculateSkillDamage(skill, caster);
-		const entity = CombatDomain.applyDamageToEntity(damage, target);
-
-		this.game[entity.position.x][entity.position.y] = entity;
 	}
 }

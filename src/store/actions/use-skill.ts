@@ -32,7 +32,7 @@ export const useSkill = async (
 			target &&
 			CombatDomain.isInSkillRange(skill, caster, target)
 		) {
-			gameDomain.useSkillOnTarget(skill, caster, target);
+			CombatDomain.useSkillOnTarget(skill, caster, target, clone);
 
 			return clone;
 		}
@@ -41,7 +41,7 @@ export const useSkill = async (
 
 		allEnemies.forEach((enemy) => {
 			if (CombatDomain.isInSkillRange(skill, caster, enemy)) {
-				gameDomain.useSkillOnTarget(skill, caster, enemy);
+				CombatDomain.useSkillOnTarget(skill, caster, enemy, clone);
 			}
 		});
 
