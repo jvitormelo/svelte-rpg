@@ -1,13 +1,11 @@
 <script>
 	import { getPosition } from 'src/lib/utils/get-position';
-	import { selectCharacter } from 'src/store/game/selected-character';
 	import { selectedSkill } from 'src/store/game/skill';
 
 	$: position = $selectedSkill ? getPosition($selectedSkill?.character.character.id) : null;
 </script>
 
 {#if position}
-	{position.x}
 	<div class="circle-container" style="left: {position.x}px; top: {position.y}px">
 		<div class="circle" />
 	</div>

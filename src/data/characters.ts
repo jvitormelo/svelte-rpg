@@ -24,6 +24,15 @@ export const availableCharacters: Omit<Character, 'id'>[] = [
 					onCast: AtomicOST
 				},
 				animation: 'atomic'
+			},
+			{
+				icon: 'https://th.bing.com/th/id/R.cf78e0f9643d7cb539aa99a548ffba37?rik=cLdDmAwoyIzskA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-sword-sword-png-image-1920.png&ehk=WkOtrPWT%2bzG6UqBRIhAWLvuGh7SRQDo41B%2fs39cLuRY%3d&risl=&pid=ImgRaw&r=0',
+				name: 'Sword attack',
+				aoe: 1,
+				damageMultiplier: 1.1,
+				cost: 50,
+				audio: null,
+				animation: null
 			}
 		]
 	}

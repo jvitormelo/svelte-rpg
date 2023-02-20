@@ -20,6 +20,10 @@
 			...availableCharacters[0],
 			id: generateId()
 		});
+
+		setInterval(() => {
+			finishTurn();
+		}, 1000);
 	});
 
 	$: isAllEnemiesDead = !$game
@@ -52,9 +56,6 @@
 					{/each}
 				</div>
 			{/each}
-		</div>
-		<div class="flex">
-			<button class="btn mx-auto mt-4" on:click={finishTurn}> Finish turn </button>
 		</div>
 	</main>
 	<GameMenu />

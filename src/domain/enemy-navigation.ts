@@ -35,13 +35,21 @@ export function findClosestPath(
 		newY--;
 	}
 
-	if (entities[newX][newY].type === 'character' || entities[newX][newY].type === 'enemy') {
+	if (
+		entities[newX][newY] &&
+		(entities[newX][newY].type === 'character' || entities[newX][newY].type === 'enemy')
+	) {
 		const possibleDirections = allDirections
 			.map((direction) => ({
 				x: startX + direction.x,
 				y: startY + direction.y
 			}))
-			.filter((direction) => entities[direction.x][direction.y].type === 'empty')
+			.filter((direction) => {
+				if (entities[direction.x] && entities[direction.x][direction.y]) {
+					return entities[direction.x][direction.y].type === 'empty';
+				}
+				return false;
+			})
 			.map((direction) => ({
 				...direction,
 				distance: getDistance(direction.x, direction.y, endX, endY)

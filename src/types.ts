@@ -6,7 +6,7 @@ export interface Skill {
 	damageMultiplier: number;
 	icon: string;
 	cost: number;
-	animation?: SkillsAnimations;
+	animation?: SkillsAnimations | null;
 	audio: {
 		onSelect: string;
 		onCast: string;

@@ -19,6 +19,7 @@
 				div.innerText = `-${damage}`;
 				div.classList.add('damage-taken');
 				div.style.left = `${x - randomX}px`;
+
 				div.style.top = `${y - randomY}px`;
 
 				window.document.body.appendChild(div);
