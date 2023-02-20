@@ -13,7 +13,6 @@
 		<div class="death-screen">
 			<h1>YOU DIED</h1>
 
-			<p><slot /></p>
 			<button on:click={restart}>Restart</button>
 		</div>
 	</div>
@@ -37,18 +36,6 @@
 		font-size: 5em;
 		margin-top: 5%;
 		text-shadow: 2px 2px 0 #800000, -2px -2px 0 #800000;
-	}
-
-	h2 {
-		font-size: 3em;
-		margin-top: 2%;
-		text-shadow: 2px 2px 0 #800000, -2px -2px 0 #800000;
-	}
-
-	p {
-		font-size: 1.5em;
-		margin-top: 2%;
-		text-shadow: 1px 1px 0 #800000, -1px -1px 0 #800000;
 	}
 
 	button {

@@ -1,4 +1,6 @@
-export const enemies = [
+import punch from '$lib/assets/audio/punch-sound.mp3';
+import type { Enemy } from 'src/types/types';
+export const enemies: Omit<Enemy, 'id'>[] = [
 	{
 		attack: 10,
 		defense: 10,
@@ -14,7 +16,10 @@ export const enemies = [
 				name: 'Slime Attack',
 				icon: '🐌',
 				cost: 50,
-				audio: null
+				audio: {
+					onSelect: null,
+					onCast: punch
+				}
 			}
 		]
 	}

@@ -1,10 +1,11 @@
 import { findClosestPath } from 'src/domain/enemy-navigation';
 import { GameDomain } from 'src/domain/game-domain';
 import { getDistance } from 'src/lib/utils/get-distance';
-import type { GameEnemyEntity, GameCharacterEntity } from 'src/types/game';
+import type { GameCharacterEntity, GameEnemyEntity } from 'src/types/game';
 import { createSkillDamage } from '../../domain/create-skill-damage';
 import { addActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
+import { spawnSound } from '../game/skill-sound';
 import { applyDamageToEntity } from './apply-damage';
 
 export const finishTurn = () => {
@@ -32,7 +33,10 @@ export const finishTurn = () => {
 			const MOB_ATTACK_RANGE = 1;
 
 			if (distance === MOB_ATTACK_RANGE) {
-				const damage = createSkillDamage(entity.character.skills[0], entity);
+				const skill = entity.character.skills[0];
+				const damage = createSkillDamage(skill, entity);
+
+				if (skill.audio?.onCast) spawnSound(skill.audio?.onCast);
 
 				clonedGame[player.position.x][player.position.y] = applyDamageToEntity(damage, player);
 

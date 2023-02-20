@@ -8,7 +8,7 @@ export interface Skill {
 	cost: number;
 	animation?: SkillsAnimations | null;
 	audio: {
-		onSelect: string;
+		onSelect?: string | null;
 		onCast: string;
 	} | null;
 }

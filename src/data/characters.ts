@@ -2,7 +2,7 @@ import Shadow from '$lib/assets/characters/shadow.png';
 import Atomic from '$lib/assets/skills/atomic.jpg';
 import ShadowOST from '$lib/assets/audio/shadow.mp3';
 import AtomicOST from '$lib/assets/audio/atomic-cut.mp3';
-import type { Character } from 'src/types';
+import type { Character } from 'src/types/types';
 
 export const availableCharacters: Omit<Character, 'id'>[] = [
 	{

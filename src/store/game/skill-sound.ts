@@ -9,3 +9,9 @@ export const playSkillSound = (sound: string) => {
 export const stopSkillSound = () => {
 	skillSound.set(null);
 };
+
+export const spawnSound = async (src: string) => {
+	const audio = new Audio(src);
+	await audio.play();
+	audio.remove();
+};
