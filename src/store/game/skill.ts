@@ -13,7 +13,7 @@ type State = {
 export const selectedSkill = writable<State>(null);
 
 export const selectSkill = (skill: Skill, characterId: string) => {
-	if (skill.audio) {
+	if (skill.audio && skill.audio.onSelect) {
 		playSkillSound(skill.audio.onSelect);
 	}
 

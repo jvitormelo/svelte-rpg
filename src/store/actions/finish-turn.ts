@@ -34,11 +34,10 @@ export const finishTurn = () => {
 
 			if (distance === MOB_ATTACK_RANGE) {
 				const skill = entity.character.skills[0];
-				const damage = createSkillDamage(skill, entity);
 
 				if (skill.audio?.onCast) spawnSound(skill.audio?.onCast);
 
-				clonedGame[player.position.x][player.position.y] = applyDamageToEntity(damage, player);
+				gameDomain.useSkillOnTarget(skill, entity, player);
 
 				return;
 			}

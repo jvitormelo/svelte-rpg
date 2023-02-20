@@ -1,3 +1,4 @@
+import { applyDamageToEntity } from 'src/store/actions/apply-damage';
 import type { Game } from 'src/store/game/game';
 import type {
 	EntityType,
@@ -6,16 +7,13 @@ import type {
 	GameEntity,
 	GameEntityWithCharacter
 } from 'src/types/game';
-import { get } from 'svelte/store';
+import type { Skill } from 'src/types/types';
+import { createSkillDamage } from './create-skill-damage';
 
 type PossibleEntities = GameCharacterEntity | GameEnemyEntity | GameEntity;
 
 export class GameDomain {
-	private game: Game;
-
-	constructor(game: Game) {
-		this.game = game;
-	}
+	constructor(private game: Game) {}
 
 	findAll<T extends PossibleEntities>(type: EntityType) {
 		const flatted = this.game.flat(2);
@@ -38,5 +36,12 @@ export class GameDomain {
 		const flatted = this.game.flat(2);
 
 		return flatted.find((entity) => 'character' in entity && entity.character.id === id) as T;
+	}
+
+	useSkillOnTarget(skill: Skill, caster: GameEntityWithCharacter, target: GameEntityWithCharacter) {
+		const damage = createSkillDamage(skill, caster);
+		const entity = applyDamageToEntity(damage, target);
+
+		this.game[entity.position.x][entity.position.y] = entity;
 	}
 }
