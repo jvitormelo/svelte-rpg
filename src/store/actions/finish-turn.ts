@@ -66,33 +66,3 @@ export const finishTurn = () => {
 
 	addActionsPoints(100);
 };
-
-function findClosestEntity(enemyX: number, enemyY: number, entities: { type: string }[][]) {
-	let closestCharacter: [number, number] | null = null;
-
-	for (let row = 0; row < entities.length; row++) {
-		for (let col = 0; col < entities[row].length; col++) {
-			if (entities[row][col].type === 'character') {
-				closestCharacter = [row, col];
-			}
-		}
-	}
-
-	if (closestCharacter) {
-		const [closestX, closestY] = closestCharacter;
-
-		if (closestX > enemyX) {
-			enemyX++;
-		} else if (closestX < enemyX) {
-			enemyX--;
-		}
-
-		if (closestY > enemyY) {
-			enemyY++;
-		} else if (closestY < enemyY) {
-			enemyY--;
-		}
-	}
-
-	return [enemyX, enemyY];
-}

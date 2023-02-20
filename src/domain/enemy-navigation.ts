@@ -37,27 +37,23 @@ export function findClosestPath(
 
 	if (entities[newX][newY].type === 'character' || entities[newX][newY].type === 'enemy') {
 		const possibleDirections = allDirections
-			.filter((direction) => {
-				const x = startX + direction.x;
-				const y = startY + direction.y;
-
-				return entities[x][y].type === 'empty';
-			})
 			.map((direction) => ({
 				x: startX + direction.x,
-				y: startY + direction.y,
-				distance: getDistance(endX, endY, startX + direction.x, startY + direction.y)
+				y: startY + direction.y
+			}))
+			.filter((direction) => entities[direction.x][direction.y].type === 'empty')
+			.map((direction) => ({
+				...direction,
+				distance: getDistance(direction.x, direction.y, endX, endY)
 			}));
 
-		console.log(possibleDirections);
-
-		const smallest = Math.min(...possibleDirections.map((direction) => direction.distance));
-
-		const direction = possibleDirections.find((direction) => direction.distance === smallest)!;
+		const closestObject = possibleDirections.reduce((closest, current) => {
+			return closest.distance < current.distance ? closest : current;
+		});
 
 		return {
-			x: direction.x,
-			y: direction.y
+			x: closestObject.x,
+			y: closestObject.y
 		};
 	}
 
