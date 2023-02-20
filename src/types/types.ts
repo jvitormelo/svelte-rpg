@@ -30,3 +30,10 @@ export type Terrain = {
 	name: string;
 	image: string;
 };
+
+export type Position = {
+	position: {
+		x: number;
+		y: number;
+	};
+};

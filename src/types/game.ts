@@ -1,4 +1,4 @@
-import type { Character, Enemy, Terrain } from './types';
+import type { Character, Enemy, Position, Terrain } from './types';
 
 type Virtual = {
 	currentHealth: number;
@@ -33,11 +33,8 @@ export type EntityType = AllEntities['type'];
 
 export type GameEntity = AllEntities & Position;
 
-export type GameEntityWithCharacter = (ICharacterEntity | IEnemyEntity) & Position;
+export type GameEnemyEntity = IEnemyEntity & Position;
 
-export type Position = {
-	position: {
-		x: number;
-		y: number;
-	};
-};
+export type GameCharacterEntity = ICharacterEntity & Position;
+
+export type GameEntityWithCharacter = GameEnemyEntity | GameCharacterEntity;

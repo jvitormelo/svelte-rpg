@@ -1,5 +1,13 @@
 import type { Game } from 'src/store/game/game';
-import type { EntityType, GameEntityWithCharacter } from 'src/types/game';
+import type {
+	EntityType,
+	GameCharacterEntity,
+	GameEnemyEntity,
+	GameEntity,
+	GameEntityWithCharacter
+} from 'src/types/game';
+
+type PossibleEntities = GameCharacterEntity | GameEnemyEntity | GameEntity;
 
 export class GameDomain {
 	private game: Game;
@@ -8,10 +16,18 @@ export class GameDomain {
 		this.game = structuredClone(game);
 	}
 
-	getAll(type: EntityType) {
+	findAll<T extends PossibleEntities>(type: EntityType) {
 		const flatted = this.game.flat(2);
 
-		return flatted.filter((entity) => entity.type === type);
+		const filteredResults = flatted.filter((entity) => entity.type === type);
+
+		return filteredResults as T[];
+	}
+
+	findEntity<T extends PossibleEntities>(type: EntityType) {
+		const flatted = this.game.flat(2);
+
+		return flatted.find((entity) => entity.type === type) as T;
 	}
 
 	findCharacter<T extends GameEntityWithCharacter>(

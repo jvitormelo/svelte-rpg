@@ -7,7 +7,7 @@ import { game } from '../game/game';
 import { deselectSkill } from '../game/skill';
 import { playSkillAnimation } from '../game/skill-animation';
 import { playSkillSound } from '../game/skill-sound';
-import { applyDamage } from './apply-damage';
+import { applyDamageToEntity } from './apply-damage';
 import { createSkillDamage } from '../../domain/create-skill-damage';
 
 // Need to refactor skills
@@ -33,7 +33,7 @@ export const useSkill = async (skill: Skill, caster: CharacterGameEntity) => {
 
 					if (entity.type === 'enemy') {
 						const damage = createSkillDamage(skill, caster);
-						clone[i][j] = applyDamage(damage, entity);
+						clone[i][j] = applyDamageToEntity(damage, entity);
 					}
 				}
 			}

@@ -1,8 +1,8 @@
+import type { GameEntity } from 'src/types/game';
 import { writable } from 'svelte/store';
-import type { Position } from '../../types/game';
 
 interface Store {
-	position: Position['position'];
+	position: GameEntity['position'];
 	entityId: string;
 }
 

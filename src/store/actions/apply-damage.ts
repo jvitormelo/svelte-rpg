@@ -1,14 +1,17 @@
 import { getEntityPosition } from 'src/domain/get-entity-position';
-import type { CombatEntity } from 'src/games-type';
 
 import { Random } from 'src/lib/utils/random';
+import type { GameEntityWithCharacter } from 'src/types/game';
 
 export interface CustomDamageEvent {
 	damage: number;
 	entityId: string;
 }
 
-export const applyDamage = (damage: number, targetedEntity: CombatEntity): CombatEntity => {
+export const applyDamageToEntity = (
+	damage: number,
+	targetedEntity: GameEntityWithCharacter
+): GameEntityWithCharacter => {
 	const clone = structuredClone(targetedEntity);
 
 	const actualDamage = damage - clone.character.defense;

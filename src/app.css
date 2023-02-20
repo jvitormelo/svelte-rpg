@@ -4,16 +4,15 @@
 
 .damage-taken {
 	position: absolute;
-	border: 2px solid red;
-	border-radius: 50%;
-	width: 30px;
-	height: 30px;
 	display: flex;
+	min-width: 30px;
+	min-height: 30px;
 	align-items: center;
 	justify-content: center;
 	font-size: 24px;
 	color: red;
 	z-index: 999;
+	font-weight: bold;
 	animation: damageTaken 1s ease-out forwards;
 }
 
