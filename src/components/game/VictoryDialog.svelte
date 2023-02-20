@@ -5,7 +5,7 @@
 
 	$: isVictory = new GameDomain($game)
 		.findAll<GameEnemyEntity>('enemy')
-		.every((entity) => entity.character.currentHealth <= 0);
+		.every((entity) => entity.character.currentHealth === -1);
 </script>
 
 {#if isVictory}

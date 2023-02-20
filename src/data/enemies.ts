@@ -11,9 +11,12 @@ export const enemies: Omit<Enemy, 'id'>[] = [
 		name: 'Slime',
 		skills: [
 			{
-				aoe: 1,
 				damageMultiplier: 1,
 				name: 'Slime Attack',
+				area: {
+					type: 'single',
+					range: 1
+				},
 				icon: '🐌',
 				cost: 50,
 				audio: {

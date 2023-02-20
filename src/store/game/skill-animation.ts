@@ -1,13 +1,23 @@
 import { writable } from 'svelte/store';
 
-export const skillAnimation = writable(0);
+interface State {
+	duration: number;
+	name: string;
+	image: string;
+}
 
-export const playSkillAnimation = (duration = 2000) => {
-	skillAnimation.set(duration);
+export const skillAnimation = writable<State | null>(null);
+
+export const playSkillAnimation = ({ duration = 2000, name = 'default', image }: State) => {
+	skillAnimation.set({
+		duration,
+		name,
+		image
+	});
 
 	return new Promise((resolve) =>
 		setTimeout(() => {
-			skillAnimation.set(0);
+			skillAnimation.set(null);
 			resolve(true);
 		}, duration)
 	);

@@ -41,5 +41,30 @@ export const availableCharacters: Omit<Character, 'id'>[] = [
 				animation: null
 			}
 		]
+	},
+	{
+		name: 'Emiya Shirou',
+		image: `https://th.bing.com/th/id/R.7b96a8326116f9245892a0e2723d08ef?rik=FRxxhn1XVwNq8Q&riu=http%3a%2f%2fvignette2.wikia.nocookie.net%2fmurderseries%2fimages%2f8%2f80%2fShirou0.png%2frevision%2flatest%3fcb%3d20150223052430&ehk=gFHhAud%2bB3wdsHI89TO58Kvj1xoyU0agiCXaF6S2bbw%3d&risl=&pid=ImgRaw&r=0`,
+		attack: 10,
+		health: 100,
+		defense: 5,
+		description: 'Trace on',
+		skills: [
+			{
+				name: 'Unlimited Blade Works',
+
+				area: {
+					range: 3,
+					type: 'circle'
+				},
+				audio: {
+					onSelect: '',
+					onCast: ''
+				},
+				damageMultiplier: 1.5,
+				cost: 300,
+				icon: 'https://s1.zerochan.net/Unlimited.Blade.Works.(Noble.Phantasm).600.2548720.jpg'
+			}
+		]
 	}
 ];

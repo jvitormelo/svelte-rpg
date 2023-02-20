@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { useSkill } from 'src/store/actions/use-skill';
 	import { selectedSkill } from 'src/store/game/skill';
-	import type { GameEntity, GameEntityWithCharacter, VirtualEnemy } from '../../types/game';
 	import { selectEnemy } from '../../store/game/enemy';
+	import type { GameEntityWithCharacter, VirtualEnemy } from '../../types/game';
 
 	export let enemyEntity: GameEntityWithCharacter;
 
@@ -22,7 +22,7 @@
 {#if isDead}
 	<div class="bg-black" />
 {:else}
-	<button data-entity-id={character.id} class="bg-red-400 w-full relative" on:click={onClick}>
+	<button data-entity-id={character.id} class=" w-full relative" on:click={onClick}>
 		<div
 			draggable={false}
 			style="background-image: url({character.image});"

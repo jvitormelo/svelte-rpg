@@ -5,7 +5,7 @@
 
 {#if $skillAnimation}
 	<dialog class="dialog-container">
-		<h1 class="text-6xl mb-4">ATOMIC</h1>
+		<h1 class="text-6xl mb-4">{$skillAnimation.name}</h1>
 		<img width="600" class="aspect-auto rounded-3xl" src={$selectedCharacter?.image} alt="Skill" />
 	</dialog>
 {/if}

@@ -18,10 +18,10 @@
 	let intervalId: NodeJS.Timer;
 
 	onMount(() => {
-		startGame({
-			...availableCharacters[0],
-			id: generateId()
-		});
+		// startGame({
+		// 	...availableCharacters[0],
+		// 	id: generateId()
+		// });
 
 		intervalId = setInterval(() => {
 			finishTurn();

@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { MOVE_COST } from 'src/constants';
 	import { isBetween } from 'src/lib/utils/between';
-	import { actionPoints } from 'src/store/game/action-points';
 	import { moveEntity } from 'src/store/actions/move-character';
 	import { useSkill } from 'src/store/actions/use-skill';
+	import { actionPoints } from 'src/store/game/action-points';
 	import { currentDragging } from 'src/store/game/drag';
 	import { selectedSkill } from 'src/store/game/skill';
-	import type { Skill } from 'src/types/types';
 	import type { GameEntity } from 'src/types/game';
+	import type { Skill } from 'src/types/types';
 
 	export let position: GameEntity['position'];
 

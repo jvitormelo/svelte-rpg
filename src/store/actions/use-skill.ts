@@ -19,7 +19,11 @@ export const useSkill = async (
 ) => {
 	if (skill.audio) {
 		playSkillSound(skill.audio.onCast);
-		await playSkillAnimation(1000);
+		await playSkillAnimation({
+			duration: 1000,
+			image: caster.character.image,
+			name: skill.name
+		});
 	}
 	game.update((value) => {
 		const clone = structuredClone(value);
@@ -31,7 +35,6 @@ export const useSkill = async (
 			target &&
 			isInSkillArea(skill, target.position.x - x, target.position.y - y)
 		) {
-			console.log('a');
 			const damage = createSkillDamage(skill, caster);
 			clone[target.position.x][target.position.y] = applyDamageToEntity(damage, target);
 
@@ -55,7 +58,7 @@ export const useSkill = async (
 	removeActionsPoints(skill.cost);
 };
 
-function isInSkillArea(skill: Skill, x: number, y: number) {
+export function isInSkillArea(skill: Skill, x: number, y: number) {
 	const { area } = skill;
 	const { range } = area;
 
