@@ -1,9 +1,12 @@
+import type { SkillsAnimations } from './types/skill';
+
 export interface Skill {
 	name: string;
 	aoe: number;
 	damageMultiplier: number;
 	icon: string;
 	cost: number;
+	animation?: SkillsAnimations;
 	audio: {
 		onSelect: string;
 		onCast: string;

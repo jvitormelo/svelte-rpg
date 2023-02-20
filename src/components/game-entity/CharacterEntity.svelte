@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { deselectSkill, selectedSkill } from 'src/store/game/skill';
 	import { MOVE_COST } from '../../constants';
 	import type { Position } from '../../games-type';
 	import { actionPoints } from '../../store/game/action-points';
@@ -10,6 +11,10 @@
 
 	function onDragStart() {
 		if ($actionPoints < MOVE_COST) return alert('Not enough action points');
+		if ($selectedSkill) {
+			deselectSkill();
+		}
+
 		setCurrentDragging({
 			entityId: character.id,
 			position

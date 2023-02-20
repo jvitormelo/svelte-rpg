@@ -1,6 +1,12 @@
 <script lang="ts">
 	import GameEntityController from 'src/components/game-entity/GameEntityController.svelte';
+	import DamageTakenController from 'src/components/game/DamageTakenController.svelte';
+	import DeathScreen from 'src/components/game/DeathScreen.svelte';
+	import SkillAnimation from 'src/components/game/SkillAnimation.svelte';
+	import SkillAudio from 'src/components/game/SkillAudio.svelte';
+	import SkillsController from 'src/components/skills/SkillsController.svelte';
 	import { finishTurn } from 'src/store/actions/finish-turn';
+	import { deselectSkill } from 'src/store/game/skill';
 	import { onMount } from 'svelte';
 	import CharacterSideMenu from '../../components/core/CharacterMenu.svelte';
 	import GameMenu from '../../components/core/EnemyMenu.svelte';
@@ -8,11 +14,6 @@
 	import { generateId } from '../../lib/utils/generate-id';
 	import { startGame } from '../../store/actions/start-game';
 	import { game } from '../../store/game/game';
-	import SkillAnimation from 'src/components/game/SkillAnimation.svelte';
-	import SkillAudio from 'src/components/game/SkillAudio.svelte';
-	import { deselectSkill } from 'src/store/game/skill';
-	import DeathScreen from 'src/components/game/DeathScreen.svelte';
-	import DamageTakenController from 'src/components/game/DamageTakenController.svelte';
 
 	onMount(() => {
 		startGame({
@@ -27,7 +28,7 @@
 </script>
 
 <div
-	class="flex  px-32 items-center min-h-screen justify-between"
+	class="flex  px-32 items-center min-h-screen justify-between overflow-hidden"
 	on:click={() => {
 		deselectSkill();
 	}}
@@ -63,6 +64,7 @@
 <SkillAudio />
 <SkillAnimation />
 <DamageTakenController />
+<SkillsController />
 
 <style>
 </style>

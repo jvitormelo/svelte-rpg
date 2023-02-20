@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getPosition } from 'src/lib/utils/get-position';
 	import type { CustomDamageEvent } from 'src/store/actions/apply-damage';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -23,21 +24,4 @@
 			}
 		});
 	});
-
-	function getPosition(id: String) {
-		const element = document.querySelector(`[data-entity-id="${id}"]`);
-
-		if (element) {
-			const rect = element.getBoundingClientRect();
-			const x = rect.x;
-			const y = rect.y;
-
-			return {
-				x: x + rect.width / 2 - 20,
-				y: y + rect.height / 2 - 20
-			};
-		}
-
-		return { x: 0, y: 0 };
-	}
 </script>
