@@ -10,7 +10,7 @@
 {#if entity.type === 'character'}
 	<CharacterEntity position={entity.position} character={entity.character} />
 {:else if entity.type === 'enemy'}
-	<EnemyEntity character={entity.character} />
+	<EnemyEntity enemyEntity={entity} />
 {:else if entity.type === 'empty'}
 	<EmptyEntity position={entity.position} />
 {:else if entity.type === 'terrain'}

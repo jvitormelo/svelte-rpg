@@ -12,6 +12,7 @@ export const stopSkillSound = () => {
 
 export const spawnSound = async (src: string) => {
 	const audio = new Audio(src);
+	audio.volume = 0.1;
 	await audio.play();
 	audio.remove();
 };

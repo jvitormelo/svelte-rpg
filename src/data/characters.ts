@@ -16,7 +16,10 @@ export const availableCharacters: Omit<Character, 'id'>[] = [
 			{
 				icon: Atomic,
 				name: "I'm atomic",
-				aoe: 3,
+				area: {
+					range: 3,
+					type: 'circle'
+				},
 				damageMultiplier: 5,
 				cost: 50,
 				audio: {
@@ -28,7 +31,10 @@ export const availableCharacters: Omit<Character, 'id'>[] = [
 			{
 				icon: 'https://th.bing.com/th/id/R.cf78e0f9643d7cb539aa99a548ffba37?rik=cLdDmAwoyIzskA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-sword-sword-png-image-1920.png&ehk=WkOtrPWT%2bzG6UqBRIhAWLvuGh7SRQDo41B%2fs39cLuRY%3d&risl=&pid=ImgRaw&r=0',
 				name: 'Sword attack',
-				aoe: 1,
+				area: {
+					range: 1,
+					type: 'single'
+				},
 				damageMultiplier: 1.1,
 				cost: 50,
 				audio: null,

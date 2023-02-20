@@ -1,8 +1,13 @@
 import type { SkillsAnimations } from './skill';
 
+export type SkillAreaType = 'circle' | 'line' | 'single';
+
 export interface Skill {
 	name: string;
-	aoe: number;
+	area: {
+		type: SkillAreaType;
+		range: number;
+	};
 	damageMultiplier: number;
 	icon: string;
 	cost: number;
