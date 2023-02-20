@@ -1,4 +1,5 @@
 import { GameDomain } from 'src/domain/game-domain';
+import { isInSkillRange } from 'src/domain/is-in-skill-range';
 import { isBetween } from 'src/lib/utils/between';
 import type { GameEnemyEntity, GameEntityWithCharacter } from 'src/types/game';
 
@@ -28,13 +29,7 @@ export const useSkill = async (
 	game.update((value) => {
 		const clone = structuredClone(value);
 
-		const { x, y } = caster.position;
-
-		if (
-			skill.area.type === 'single' &&
-			target &&
-			isInSkillArea(skill, target.position.x - x, target.position.y - y)
-		) {
+		if (skill.area.type === 'single' && target && isInSkillRange(skill, caster, target)) {
 			const damage = createSkillDamage(skill, caster);
 			clone[target.position.x][target.position.y] = applyDamageToEntity(damage, target);
 
@@ -46,7 +41,7 @@ export const useSkill = async (
 		allEnemies.forEach((enemy) => {
 			const { x: enemyX, y: enemyY } = enemy.position;
 
-			if (isInSkillArea(skill, enemyX - x, enemyY - y)) {
+			if (isInSkillRange(skill, caster, enemy)) {
 				const damage = createSkillDamage(skill, caster);
 				clone[enemyX][enemyY] = applyDamageToEntity(damage, enemy);
 			}
@@ -57,10 +52,3 @@ export const useSkill = async (
 	deselectSkill();
 	removeActionsPoints(skill.cost);
 };
-
-export function isInSkillArea(skill: Skill, x: number, y: number) {
-	const { area } = skill;
-	const { range } = area;
-
-	return isBetween(x, -range, range) && isBetween(y, -range, range);
-}

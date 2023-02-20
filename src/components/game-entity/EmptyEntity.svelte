@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { MOVE_COST } from 'src/constants';
-	import { isBetween } from 'src/lib/utils/between';
+	import { isInSkillRange } from 'src/domain/is-in-skill-range';
 	import { moveEntity } from 'src/store/actions/move-character';
 	import { useSkill } from 'src/store/actions/use-skill';
 	import { actionPoints } from 'src/store/game/action-points';
 	import { currentDragging } from 'src/store/game/drag';
 	import { selectedSkill } from 'src/store/game/skill';
 	import type { GameEntity } from 'src/types/game';
-	import type { Skill } from 'src/types/types';
 
-	export let position: GameEntity['position'];
+	export let entity: GameEntity;
+
+	$: position = entity.position;
 
 	$: inSkillArea = $selectedSkill
-		? handleAreaSkill($selectedSkill.skill, $selectedSkill.character.position)
+		? isInSkillRange($selectedSkill.skill, $selectedSkill.character, entity)
 		: false;
 
 	$: moveable =
@@ -28,15 +29,6 @@
 						$currentDragging?.position.y + -1 === position.y)
 				: false
 			: false;
-
-	function handleAreaSkill(selectedSkill: Skill, characterPosition: GameEntity['position']) {
-		const { x, y } = characterPosition;
-		const {
-			area: { range: aoe }
-		} = selectedSkill;
-
-		return isBetween(position.x, x - aoe, x + aoe) && isBetween(position.y, y - aoe, y + aoe);
-	}
 
 	function handleDrop() {
 		if (!moveable || !$currentDragging) return;

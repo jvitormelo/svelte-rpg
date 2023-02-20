@@ -12,7 +12,7 @@
 {:else if entity.type === 'enemy'}
 	<EnemyEntity enemyEntity={entity} />
 {:else if entity.type === 'empty'}
-	<EmptyEntity position={entity.position} />
+	<EmptyEntity {entity} />
 {:else if entity.type === 'terrain'}
 	<div>terrain</div>
 {/if}
