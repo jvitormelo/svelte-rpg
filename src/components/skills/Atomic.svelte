@@ -1,8 +1,10 @@
 <script>
-	import { getEntityPosition } from 'src/domain/get-entity-position';
+	import { NavigationDomain } from 'src/domain/navigation';
 	import { selectedSkill } from 'src/store/game/skill';
 
-	$: position = $selectedSkill ? getEntityPosition($selectedSkill?.character.character.id) : null;
+	$: position = $selectedSkill
+		? NavigationDomain.getEntityAbsolutePosition($selectedSkill?.character.character.id)
+		: null;
 </script>
 
 {#if position}

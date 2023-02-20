@@ -2,9 +2,9 @@ import { isBetween } from 'src/lib/utils/between';
 import { Random } from 'src/lib/utils/random';
 import type { GameEntity, GameEntityWithCharacter } from 'src/types/game';
 import type { Skill } from 'src/types/types';
-import { getEntityPosition } from './get-entity-position';
+import { NavigationDomain } from './navigation';
 
-export class Combat {
+export class CombatDomain {
 	static calculateSkillDamage(skill: Skill, caster: GameEntityWithCharacter): number {
 		return skill.damageMultiplier * caster.character.attack;
 	}
@@ -38,7 +38,7 @@ export class Combat {
 	static createDamageVisual(damage: number, entityId: string) {
 		const div = document.createElement('div');
 
-		const { x, y } = getEntityPosition(entityId);
+		const { x, y } = NavigationDomain.getEntityAbsolutePosition(entityId);
 
 		const randomX = Random.generateRandomNumber(0, 60);
 		const randomY = Random.generateRandomNumber(0, 60);

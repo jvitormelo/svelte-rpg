@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { selectedCharacter } from 'src/store/game/selected-character';
 	import { skillAnimation } from 'src/store/game/skill-animation';
 </script>
 
 {#if $skillAnimation}
 	<dialog class="dialog-container">
 		<h1 class="text-6xl mb-4">{$skillAnimation.name}</h1>
-		<img width="600" class="aspect-auto rounded-3xl" src={$selectedCharacter?.image} alt="Skill" />
+		<img width="600" class="aspect-auto rounded-3xl" src={$skillAnimation.image} alt="Skill" />
 	</dialog>
 {/if}
 

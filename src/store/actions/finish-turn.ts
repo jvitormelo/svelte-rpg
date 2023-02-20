@@ -1,5 +1,5 @@
-import { findClosestPath } from 'src/domain/enemy-navigation';
-import { GameDomain } from 'src/domain/game-domain';
+import { GameDomain } from 'src/domain/game';
+import { NavigationDomain } from 'src/domain/navigation';
 import { getDistance } from 'src/lib/utils/get-distance';
 import type { GameCharacterEntity, GameEnemyEntity } from 'src/types/game';
 import { addActionsPoints } from '../game/action-points';
@@ -40,7 +40,11 @@ export const finishTurn = () => {
 				return;
 			}
 
-			const newPosition = findClosestPath(entity.position, player.position, clonedGame);
+			const newPosition = NavigationDomain.findClosestPath(
+				entity.position,
+				player.position,
+				clonedGame
+			);
 
 			if (newPosition) {
 				clonedGame[entity.position.x][entity.position.y] = {

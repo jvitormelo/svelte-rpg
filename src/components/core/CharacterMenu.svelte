@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GameDomain } from 'src/domain/game-domain';
+	import { GameDomain } from 'src/domain/game';
 	import { actionPoints } from '../../store/game/action-points';
 	import { game } from '../../store/game/game';
 	import { selectedCharacter } from '../../store/game/selected-character';

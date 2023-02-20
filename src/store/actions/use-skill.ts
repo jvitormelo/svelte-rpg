@@ -1,5 +1,5 @@
-import { GameDomain } from 'src/domain/game-domain';
-import { isInSkillRange } from 'src/domain/is-in-skill-range';
+import { CombatDomain } from 'src/domain/combat';
+import { GameDomain } from 'src/domain/game';
 import type { GameEnemyEntity, GameEntityWithCharacter } from 'src/types/game';
 import type { Skill } from 'src/types/types';
 import { removeActionsPoints } from '../game/action-points';
@@ -27,7 +27,11 @@ export const useSkill = async (
 
 		const gameDomain = new GameDomain(clone);
 
-		if (skill.area.type === 'single' && target && isInSkillRange(skill, caster, target)) {
+		if (
+			skill.area.type === 'single' &&
+			target &&
+			CombatDomain.isInSkillRange(skill, caster, target)
+		) {
 			gameDomain.useSkillOnTarget(skill, caster, target);
 
 			return clone;
@@ -36,7 +40,7 @@ export const useSkill = async (
 		const allEnemies = gameDomain.findAll<GameEnemyEntity>('enemy');
 
 		allEnemies.forEach((enemy) => {
-			if (isInSkillRange(skill, caster, enemy)) {
+			if (CombatDomain.isInSkillRange(skill, caster, enemy)) {
 				gameDomain.useSkillOnTarget(skill, caster, enemy);
 			}
 		});

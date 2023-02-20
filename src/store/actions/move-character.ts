@@ -1,5 +1,5 @@
 import { MOVE_COST } from 'src/constants';
-import { GameDomain } from 'src/domain/game-domain';
+import { GameDomain } from 'src/domain/game';
 import { get } from 'svelte/store';
 import { actionPoints, removeActionsPoints } from '../game/action-points';
 import { game } from '../game/game';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { MOVE_COST } from 'src/constants';
-	import { isInSkillRange } from 'src/domain/is-in-skill-range';
+	import { CombatDomain } from 'src/domain/combat';
 	import { moveEntity } from 'src/store/actions/move-character';
 	import { useSkill } from 'src/store/actions/use-skill';
 	import { actionPoints } from 'src/store/game/action-points';
@@ -13,7 +13,7 @@
 	$: position = entity.position;
 
 	$: inSkillArea = $selectedSkill
-		? isInSkillRange($selectedSkill.skill, $selectedSkill.character, entity)
+		? CombatDomain.isInSkillRange($selectedSkill.skill, $selectedSkill.character, entity)
 		: false;
 
 	$: moveable =

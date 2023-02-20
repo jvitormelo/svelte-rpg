@@ -1,4 +1,4 @@
-import { GameDomain } from 'src/domain/game-domain';
+import { GameDomain } from 'src/domain/game';
 import { get, writable } from 'svelte/store';
 import type { GameEntityWithCharacter } from '../../types/game';
 import type { Skill } from '../../types/types';

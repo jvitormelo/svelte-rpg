@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GameDomain } from 'src/domain/game-domain';
+	import { GameDomain } from 'src/domain/game';
 	import { deselectEnemy, selectedEnemyId } from '../../store/game/enemy';
 	import { game } from '../../store/game/game';
 	import EntityInfo from './EntityInfo.svelte';

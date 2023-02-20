@@ -1,7 +1,9 @@
 import { enemies } from 'src/data/enemies';
-import type { GameEntity } from 'src/games-type';
+
 import { generateId } from 'src/lib/utils/generate-id';
-import type { Character } from 'src/types';
+import type { GameEntity } from 'src/types/game';
+import type { Character } from 'src/types/types';
+
 import { game, type Game } from '../game/game';
 import { selectCharacter } from '../game/selected-character';
 

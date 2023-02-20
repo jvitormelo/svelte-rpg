@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GameDomain } from 'src/domain/game-domain';
+	import { GameDomain } from 'src/domain/game';
 	import { game } from 'src/store/game/game';
 	import type { GameEnemyEntity } from 'src/types/game';
 

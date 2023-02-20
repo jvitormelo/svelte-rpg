@@ -7,7 +7,7 @@ import type {
 	GameEntityWithCharacter
 } from 'src/types/game';
 import type { Skill } from 'src/types/types';
-import { Combat } from './combat';
+import { CombatDomain } from './combat';
 
 type PossibleEntities = GameCharacterEntity | GameEnemyEntity | GameEntity;
 
@@ -38,8 +38,8 @@ export class GameDomain {
 	}
 
 	useSkillOnTarget(skill: Skill, caster: GameEntityWithCharacter, target: GameEntityWithCharacter) {
-		const damage = Combat.calculateSkillDamage(skill, caster);
-		const entity = Combat.applyDamageToEntity(damage, target);
+		const damage = CombatDomain.calculateSkillDamage(skill, caster);
+		const entity = CombatDomain.applyDamageToEntity(damage, target);
 
 		this.game[entity.position.x][entity.position.y] = entity;
 	}
