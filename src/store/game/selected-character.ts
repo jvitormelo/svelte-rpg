@@ -1,5 +1,5 @@
 import { derived, writable } from 'svelte/store';
-import type { ICharacterEntity } from '../../games-type';
+import type { ICharacterEntity } from '../../types/game';
 import { game } from './game';
 
 export const selectedCharacterId = writable<string | null>(null);

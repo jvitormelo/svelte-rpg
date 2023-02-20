@@ -1,4 +1,4 @@
-import type { SkillsAnimations } from './types/skill';
+import type { SkillsAnimations } from './skill';
 
 export interface Skill {
 	name: string;

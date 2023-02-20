@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { useSkill } from 'src/store/actions/use-skill';
 	import { selectedSkill } from 'src/store/game/skill';
-	import type { VirtualEnemy } from '../../games-type';
+	import type { VirtualEnemy } from '../../types/game';
 	import { selectEnemy } from '../../store/game/enemy';
 
 	export let character: VirtualEnemy;

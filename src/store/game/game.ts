@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { GameEntity } from '../../games-type';
+import type { GameEntity } from '../../types/game';
 
 export type Game = GameEntity[][];
 

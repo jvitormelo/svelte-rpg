@@ -1,5 +1,5 @@
-import type { EntityType } from 'src/games-type';
 import type { Game } from 'src/store/game/game';
+import type { EntityType, GameEntityWithCharacter } from 'src/types/game';
 
 export class GameDomain {
 	private game: Game;
@@ -14,9 +14,11 @@ export class GameDomain {
 		return flatted.filter((entity) => entity.type === type);
 	}
 
-	findCharacter(id: string) {
+	findCharacter<T extends GameEntityWithCharacter>(
+		id: string
+	): GameEntityWithCharacter | undefined {
 		const flatted = this.game.flat(2);
 
-		return flatted.find((entity) => 'character' in entity && entity.character.id === id);
+		return flatted.find((entity) => 'character' in entity && entity.character.id === id) as T;
 	}
 }

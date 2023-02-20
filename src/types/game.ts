@@ -27,11 +27,13 @@ interface TerrainEntity {
 	terrain: Terrain;
 }
 
-export type CombatEntity = (ICharacterEntity | IEnemyEntity) & Position;
-
 type AllEntities = ICharacterEntity | IEnemyEntity | EmptyEntity | TerrainEntity;
 
 export type EntityType = AllEntities['type'];
+
+export type GameEntity = AllEntities & Position;
+
+export type GameEntityWithCharacter = (ICharacterEntity | IEnemyEntity) & Position;
 
 export type Position = {
 	position: {
@@ -39,6 +41,3 @@ export type Position = {
 		y: number;
 	};
 };
-export type GameEntity = AllEntities & Position;
-
-export type CharacterGameEntity = ICharacterEntity & Position;

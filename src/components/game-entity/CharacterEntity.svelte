@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { deselectSkill, selectedSkill } from 'src/store/game/skill';
 	import { MOVE_COST } from '../../constants';
-	import type { Position } from '../../games-type';
+	import type { Position } from '../../types/game';
 	import { actionPoints } from '../../store/game/action-points';
 	import { removeCurrentDragging, setCurrentDragging } from '../../store/game/drag';
-	import type { Character } from '../../types';
+	import type { Character } from '../../types/types';
 
 	export let character: Character;
 	export let position: Position['position'];

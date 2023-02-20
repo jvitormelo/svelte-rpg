@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Character } from '../../types';
+	import type { Character } from '../../types/types';
 
 	export let character: Omit<Character, 'id'>;
 

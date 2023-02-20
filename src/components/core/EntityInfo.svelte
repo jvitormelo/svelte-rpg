@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { VirtualCharacter } from '../../games-type';
+	import type { VirtualCharacter } from '../../types/game';
 
 	export let character: VirtualCharacter;
 

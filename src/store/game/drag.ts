@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { Position } from '../../games-type';
+import type { Position } from '../../types/game';
 
 interface Store {
 	position: Position['position'];

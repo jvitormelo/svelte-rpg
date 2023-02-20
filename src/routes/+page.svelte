@@ -4,7 +4,7 @@
 	import { availableCharacters } from '../data/characters';
 	import { generateId } from '../lib/utils/generate-id';
 	import { startGame } from '../store/actions/start-game';
-	import type { Character } from '../types';
+	import type { Character } from '../types/types';
 
 	function selectCharacter(character: Omit<Character, 'id'>) {
 		startGame({ ...character, id: generateId() });
