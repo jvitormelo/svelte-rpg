@@ -1,4 +1,5 @@
 import { MOVE_COST } from 'src/constants';
+import { GameDomain } from 'src/domain/game-domain';
 import { get } from 'svelte/store';
 import { actionPoints, removeActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
@@ -15,9 +16,7 @@ export const moveEntity = (x: number, y: number, entityId: string) => {
 	game.update((game) => {
 		const clone = structuredClone(game);
 
-		const entity = clone
-			.flat(2)
-			.find((rowEntity) => 'character' in rowEntity && rowEntity.character.id === entityId);
+		const entity = new GameDomain(clone).findCharacter(entityId);
 
 		if (!entity) {
 			throw new Error('Entity not found');

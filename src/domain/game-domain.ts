@@ -6,6 +6,7 @@ import type {
 	GameEntity,
 	GameEntityWithCharacter
 } from 'src/types/game';
+import { get } from 'svelte/store';
 
 type PossibleEntities = GameCharacterEntity | GameEnemyEntity | GameEntity;
 
@@ -13,7 +14,7 @@ export class GameDomain {
 	private game: Game;
 
 	constructor(game: Game) {
-		this.game = structuredClone(game);
+		this.game = game;
 	}
 
 	findAll<T extends PossibleEntities>(type: EntityType) {
@@ -31,8 +32,9 @@ export class GameDomain {
 	}
 
 	findCharacter<T extends GameEntityWithCharacter>(
-		id: string
+		id?: string | null
 	): GameEntityWithCharacter | undefined {
+		if (!id) return;
 		const flatted = this.game.flat(2);
 
 		return flatted.find((entity) => 'character' in entity && entity.character.id === id) as T;

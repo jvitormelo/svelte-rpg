@@ -19,7 +19,6 @@ export const selectSkill = (skill: Skill, characterId: string) => {
 
 	const character = new GameDomain(get(game)).findCharacter(characterId);
 
-	console.log(character);
 	if (character) {
 		selectedSkill.set({ skill, character });
 	}

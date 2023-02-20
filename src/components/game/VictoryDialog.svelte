@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { GameDomain } from 'src/domain/game-domain';
 	import { game } from 'src/store/game/game';
+	import type { GameEnemyEntity } from 'src/types/game';
 
-	$: isVictory = $game
-		.flat(2)
-		.every((entity) => (entity.type === 'enemy' ? entity.character.currentHealth <= 0 : true));
-
-	$: console.log(isVictory);
+	$: isVictory = new GameDomain($game)
+		.findAll<GameEnemyEntity>('enemy')
+		.every((entity) => entity.character.currentHealth <= 0);
 </script>
 
 {#if isVictory}
