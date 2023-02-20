@@ -2,11 +2,9 @@ import { findClosestPath } from 'src/domain/enemy-navigation';
 import { GameDomain } from 'src/domain/game-domain';
 import { getDistance } from 'src/lib/utils/get-distance';
 import type { GameCharacterEntity, GameEnemyEntity } from 'src/types/game';
-import { createSkillDamage } from '../../domain/create-skill-damage';
 import { addActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
 import { spawnSound } from '../game/skill-sound';
-import { applyDamageToEntity } from './apply-damage';
 
 export const finishTurn = () => {
 	game.update((value) => {
