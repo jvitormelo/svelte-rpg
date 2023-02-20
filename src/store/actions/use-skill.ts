@@ -13,7 +13,7 @@ import { createSkillDamage } from './create-skill-damage';
 export const useSkill = async (skill: Skill, entity: CharacterGameEntity) => {
 	if (skill.audio) {
 		playSkillSound(skill.audio.onCast);
-		await playSkillAnimation(500);
+		await playSkillAnimation(1000);
 	}
 	game.update((value) => {
 		const clone = structuredClone(value);
