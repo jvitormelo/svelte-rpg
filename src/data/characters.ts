@@ -8,7 +8,7 @@ export const availableCharacters: Omit<Character, 'id'>[] = [
 	{
 		name: 'Shadow',
 		image: Shadow,
-		attack: 5,
+		attack: Number.MAX_SAFE_INTEGER,
 		health: Number.MAX_SAFE_INTEGER,
 		defense: 5,
 		description: 'The ultimate being.',

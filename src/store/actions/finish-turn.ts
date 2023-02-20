@@ -4,7 +4,7 @@ import { getDistance } from 'src/lib/utils/get-distance';
 import { addActionsPoints } from '../game/action-points';
 import { game } from '../game/game';
 import { applyDamage } from './apply-damage';
-import { createSkillDamage } from './create-skill-damage';
+import { createSkillDamage } from '../../domain/create-skill-damage';
 
 export const finishTurn = () => {
 	game.update((value) => {

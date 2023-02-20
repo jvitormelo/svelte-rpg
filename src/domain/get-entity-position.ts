@@ -1,4 +1,4 @@
-export function getPosition(id: string) {
+export function getEntityPosition(id: string) {
 	const element = document.querySelector(`[data-entity-id="${id}"]`);
 
 	if (element) {

@@ -1,8 +1,8 @@
 <script>
-	import { getPosition } from 'src/lib/utils/get-position';
+	import { getEntityPosition } from 'src/domain/get-entity-position';
 	import { selectedSkill } from 'src/store/game/skill';
 
-	$: position = $selectedSkill ? getPosition($selectedSkill?.character.character.id) : null;
+	$: position = $selectedSkill ? getEntityPosition($selectedSkill?.character.character.id) : null;
 </script>
 
 {#if position}

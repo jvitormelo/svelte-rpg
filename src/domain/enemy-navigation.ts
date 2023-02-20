@@ -1,4 +1,4 @@
-import type { EnemyType } from 'src/games-type';
+import type { EntityType } from 'src/games-type';
 import { getDistance } from 'src/lib/utils/get-distance';
 
 const allDirections = [
@@ -15,7 +15,7 @@ const allDirections = [
 export function findClosestPath(
 	startPosition: { x: number; y: number },
 	endPosition: { x: number; y: number },
-	entities: { type: EnemyType }[][]
+	entities: { type: EntityType }[][]
 ) {
 	const { x: startX, y: startY } = startPosition;
 	const { x: endX, y: endY } = endPosition;
