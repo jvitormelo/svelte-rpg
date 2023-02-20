@@ -1,5 +1,6 @@
 import type { CombatEntity } from 'src/games-type';
-import { damageHistory } from '../game/damage-history';
+import { getPosition } from 'src/lib/utils/get-position';
+import { Random } from 'src/lib/utils/random';
 
 export interface CustomDamageEvent {
 	damage: number;
@@ -11,22 +12,7 @@ export const applyDamage = (damage: number, entity: CombatEntity): CombatEntity 
 
 	const actualDamage = damage - clone.character.defense;
 
-	const damageEvent = new CustomEvent<CustomDamageEvent>('damage-taken', {
-		detail: {
-			damage: actualDamage,
-			entityId: clone.character.id
-		}
-	});
-
-	dispatchEvent(damageEvent);
-
-	damageHistory.update((value) => [
-		...value,
-		{
-			damage: actualDamage,
-			entity: clone
-		}
-	]);
+	createDamageVisual(actualDamage, clone.character.id);
 
 	return {
 		...clone,
@@ -36,3 +22,24 @@ export const applyDamage = (damage: number, entity: CombatEntity): CombatEntity 
 		}
 	};
 };
+
+function createDamageVisual(damage: number, entityId: string) {
+	const div = document.createElement('div');
+
+	const { x, y } = getPosition(entityId);
+
+	const randomX = Random.generateRandomNumber(0, 60);
+	const randomY = Random.generateRandomNumber(0, 60);
+
+	div.innerText = `-${damage}`;
+	div.classList.add('damage-taken');
+	div.style.left = `${x - randomX}px`;
+
+	div.style.top = `${y - randomY}px`;
+
+	window.document.body.appendChild(div);
+
+	setTimeout(() => {
+		div.remove();
+	}, 1000);
+}

@@ -10,6 +10,7 @@ import { playSkillSound } from '../game/skill-sound';
 import { applyDamage } from './apply-damage';
 import { createSkillDamage } from './create-skill-damage';
 
+// Need to refactor skills
 export const useSkill = async (skill: Skill, entity: CharacterGameEntity) => {
 	if (skill.audio) {
 		playSkillSound(skill.audio.onCast);

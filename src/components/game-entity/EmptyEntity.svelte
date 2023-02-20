@@ -51,6 +51,10 @@
 		: 'rgba(0, 191, 255, 0.3)';
 
 	function handleClick() {
+		if ($currentDragging) {
+			return handleDrop();
+		}
+
 		if ($selectedSkill) {
 			useSkill($selectedSkill.skill, $selectedSkill.character);
 		}

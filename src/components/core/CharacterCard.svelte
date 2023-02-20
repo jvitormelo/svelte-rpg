@@ -6,7 +6,7 @@
 	export let onClick: (character: Omit<Character, 'id'>) => void;
 </script>
 
-<div class="card w-96 bg-base-100 shadow-xl">
+<div class="card w-96 bg-base-100 shadow-xl border-2 border-blue-200">
 	<figure><img src={character.image} alt="Shoes" /></figure>
 	<div class="card-body">
 		<h2 class="card-title">{character.name}</h2>

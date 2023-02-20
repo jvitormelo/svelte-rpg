@@ -32,6 +32,7 @@
 	data-entity-id={character.id}
 	draggable={canMove}
 	on:dragstart={onDragStart}
+	on:click={onDragStart}
 	on:dragend={onDragEnd}
 	style="background-image: url({character.image});"
 	class="rounded-full bg-cover bg-no-repeat bg-center cursor-pointer"

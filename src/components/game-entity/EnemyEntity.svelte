@@ -1,10 +1,16 @@
 <script lang="ts">
+	import { useSkill } from 'src/store/actions/use-skill';
+	import { selectedSkill } from 'src/store/game/skill';
 	import type { VirtualEnemy } from '../../games-type';
 	import { selectEnemy } from '../../store/game/enemy';
 
 	export let character: VirtualEnemy;
 
 	function onClick() {
+		if ($selectedSkill) {
+			return useSkill($selectedSkill.skill, $selectedSkill.character);
+		}
+
 		selectEnemy(character.id);
 	}
 
