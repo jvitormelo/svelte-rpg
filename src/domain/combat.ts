@@ -6,6 +6,10 @@ import type { Skill } from 'src/types/types';
 import { NavigationDomain } from './navigation';
 
 export class CombatDomain {
+	isDead(entity: GameEntityWithCharacter) {
+		return entity.character.currentHealth <= 0;
+	}
+
 	static calculateSkillDamage(skill: Skill, caster: GameEntityWithCharacter): number {
 		return skill.damageMultiplier * caster.character.attack;
 	}
@@ -65,6 +69,14 @@ export class CombatDomain {
 	) {
 		const damage = CombatDomain.calculateSkillDamage(skill, caster);
 		const entity = CombatDomain.applyDamageToEntity(damage, target);
+
+		if (CombatDomain.isDead(entity)) {
+			game[entity.position.x][entity.position.y] = {
+				type: 'empty',
+				position: entity.position
+			};
+			return;
+		}
 
 		game[entity.position.x][entity.position.y] = entity;
 	}

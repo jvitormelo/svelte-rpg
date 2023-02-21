@@ -10,9 +10,6 @@
 	import { onDestroy, onMount } from 'svelte';
 	import CharacterSideMenu from '../../components/core/CharacterMenu.svelte';
 	import GameMenu from '../../components/core/EnemyMenu.svelte';
-	import { availableCharacters } from '../../data/characters';
-	import { generateId } from '../../lib/utils/generate-id';
-	import { startGame } from '../../store/actions/start-game';
 	import { game } from '../../store/game/game';
 
 	let intervalId: NodeJS.Timer;
@@ -49,10 +46,10 @@
 		on:click|preventDefault|stopPropagation
 		on:keydown
 		on:dragover|preventDefault
-		class="flex gap-1"
+		class="flex bg-slate-50 bg"
 	>
 		{#each $game as row}
-			<section class="flex flex-col gap-1 [&>*]:w-32 [&>*]:h-32">
+			<section class="flex flex-col [&>*]:w-32 [&>*]:h-32">
 				{#each row as entity}
 					<GameEntityController {entity} />
 				{/each}
@@ -70,4 +67,10 @@
 <VictoryDialog />
 
 <style>
+	.bg {
+		background-image: url('https://th.bing.com/th/id/R.edc24462b2ca830491d57e40a7822fd0?rik=0E%2b06hmSPtPi4A&pid=ImgRaw&r=0');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
 </style>

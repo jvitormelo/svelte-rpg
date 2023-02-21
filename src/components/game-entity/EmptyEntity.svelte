@@ -17,6 +17,7 @@
 		: false;
 
 	$: moveable =
+		//Refactor this
 		$actionPoints >= MOVE_COST
 			? $currentDragging
 				? ($currentDragging?.position.x + 1 === position.x &&
@@ -26,6 +27,14 @@
 				  ($currentDragging?.position.x === position.x &&
 						$currentDragging?.position.y + 1 === position.y) ||
 				  ($currentDragging?.position.x === position.x &&
+						$currentDragging?.position.y + -1 === position.y) ||
+				  ($currentDragging?.position.x + 1 === position.x &&
+						$currentDragging?.position.y + 1 === position.y) ||
+				  ($currentDragging?.position.x + -1 === position.x &&
+						$currentDragging?.position.y + 1 === position.y) ||
+				  ($currentDragging?.position.x + 1 === position.x &&
+						$currentDragging?.position.y + -1 === position.y) ||
+				  ($currentDragging?.position.x + -1 === position.x &&
 						$currentDragging?.position.y + -1 === position.y)
 				: false
 			: false;
@@ -42,7 +51,7 @@
 		? 'rgba(0, 255, 0, 0.3)'
 		: inSkillArea
 		? 'rgba(255, 191, 255, 0.7)'
-		: 'rgba(0, 191, 255, 0.3)';
+		: 'transparent';
 
 	function handleClick() {
 		if ($currentDragging) {
@@ -60,13 +69,12 @@
 	on:dragstart|preventDefault
 	on:drop|preventDefault={handleDrop}
 	draggable={false}
-	class="glass-background rounded-md"
-	style="background-color: {background}; cursor: {inSkillArea ? 'pointer' : 'default'};"
+	class="glass-background"
+	style="background-color: {background}; cursor: {inSkillArea || moveable ? 'pointer' : 'default'};"
 />
 
 <style>
 	.glass-background {
 		background-color: rgba(0, 191, 255, 0.3); /* semi-transparent blue background */
-		backdrop-filter: blur(10px) saturate(120%);
 	}
 </style>

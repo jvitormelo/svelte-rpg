@@ -1,14 +1,24 @@
 <script>
 	import { NavigationDomain } from 'src/domain/navigation';
+	import { useSkill } from 'src/store/actions/use-skill';
 	import { selectedSkill } from 'src/store/game/skill';
 
 	$: position = $selectedSkill
 		? NavigationDomain.getEntityAbsolutePosition($selectedSkill?.character.character.id)
 		: null;
+
+	function handleClick() {
+		if ($selectedSkill) useSkill($selectedSkill.skill, $selectedSkill.character);
+		console.log('click');
+	}
 </script>
 
 {#if position}
-	<div class="circle-container" style="left: {position.x}px; top: {position.y}px">
+	<div
+		class="circle-container"
+		on:click={handleClick}
+		style="left: {position.x}px; top: {position.y}px"
+	>
 		<div class="circle" />
 	</div>
 {/if}
@@ -24,8 +34,9 @@
 		overflow: hidden;
 		position: absolute;
 		transform: translateX(-50%) translateY(-50%);
+		cursor: pointer;
 
-		z-index: -1;
+		z-index: 1;
 		animation: expand 0.5s ease-out forwards;
 	}
 
@@ -35,8 +46,8 @@
 			height: 100px;
 		}
 		100% {
-			width: 900px;
-			height: 900px;
+			width: 950px;
+			height: 950px;
 		}
 	}
 

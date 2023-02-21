@@ -18,8 +18,6 @@ export const finishTurn = () => {
 		allEnemies.forEach((entity) => {
 			const player = gameDomain.findEntity<GameCharacterEntity>('character');
 
-			if (CombatDomain.isDead(entity)) return;
-
 			const distance = getDistance(
 				entity.position.x,
 				entity.position.y,
@@ -60,7 +58,8 @@ export const finishTurn = () => {
 						x: newPosition.x,
 						y: newPosition.y
 					},
-					character: entity.character
+					character: entity.character,
+					previousPosition: entity.position
 				};
 			}
 		});

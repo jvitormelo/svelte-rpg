@@ -1,14 +1,15 @@
 import { enemies } from 'src/data/enemies';
 
 import { generateId } from 'src/lib/utils/generate-id';
+import { Random } from 'src/lib/utils/random';
 import type { GameEntity } from 'src/types/game';
 import type { Character } from 'src/types/types';
 
 import { game, type Game } from '../game/game';
 import { selectCharacter } from '../game/selected-character';
 
-const ROW_LENGTH = 5;
-const COLUMN_LENGTH = 5;
+const ROW_LENGTH = 7;
+const COLUMN_LENGTH = 7;
 
 const enemyPositions = [
 	{
@@ -43,8 +44,9 @@ export const startGame = (character: Character) => {
 			);
 
 			if (foundEnemy) {
+				const enemy = Random.pick(enemies);
 				row.push({
-					character: { ...enemies[0], id: generateId(), currentHealth: enemies[0].health },
+					character: { ...enemy, id: generateId(), currentHealth: enemies[0].health },
 					type: 'enemy',
 					position
 				});

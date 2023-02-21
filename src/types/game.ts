@@ -31,10 +31,16 @@ type AllEntities = ICharacterEntity | IEnemyEntity | EmptyEntity | TerrainEntity
 
 export type EntityType = AllEntities['type'];
 
-export type GameEntity = AllEntities & Position;
+export type GameEntity = AllEntities &
+	Position & {
+		previousPosition?: Position['position'];
+	};
 
 export type GameEnemyEntity = IEnemyEntity & Position;
 
 export type GameCharacterEntity = ICharacterEntity & Position;
 
-export type GameEntityWithCharacter = GameEnemyEntity | GameCharacterEntity;
+export type GameEntityWithCharacter = (GameEnemyEntity | GameCharacterEntity) &
+	Position & {
+		previousPosition?: Position['position'];
+	};

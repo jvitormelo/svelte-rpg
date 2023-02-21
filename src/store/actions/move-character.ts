@@ -39,13 +39,15 @@ export const moveEntity = (x: number, y: number, entityId: string) => {
 			clone[x][y] = {
 				type: 'character',
 				character: entity.character,
-				position
+				position,
+				previousPosition: entity.position
 			};
 		} else if (entity.type === 'enemy') {
 			clone[x][y] = {
 				type: 'enemy',
 				character: entity.character,
-				position
+				position,
+				previousPosition: entity.position
 			};
 		}
 
